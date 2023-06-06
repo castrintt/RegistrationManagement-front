@@ -1,0 +1,279 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.video_container {
+    display: none;
+}
+
+.login_container {
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-blue);
+}
+
+.form {
+    background-color: var(--icons);
+    box-shadow: var(--box-shadow);
+    border-radius: .4rem;
+    padding: 1.5rem 2rem;
+    width: 70%;
+    height: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form>img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background-color: var(--icons);
+}
+
+.form>label:not(label:nth-of-type(3)) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5rem;
+}
+
+.form>label:nth-of-type(3) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}
+
+.form>h1 {
+    font-size: 1rem;
+    align-self: flex-start;
+}
+
+.form span {
+    font-size: .9rem;
+}
+
+.form>span>a {
+    font-size: .9rem;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: var(--light-blurred-blue);
+}
+
+.form>span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: justify;
+    gap: .4rem;
+}
+
+@media all and (min-width: 530px) {
+    .form {
+        background-color: rgba(255, 255, 255, 0.89);
+        box-shadow: var(--box-shadow);
+        border-radius: .4rem;
+        padding: 1.5rem 2rem;
+        width: 60%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+}
+
+@media all and (min-width: 660px) {
+    .form {
+        background-color: rgba(255, 255, 255, 0.89);
+        box-shadow: var(--box-shadow);
+        border-radius: .4rem;
+        padding: 1.5rem 2rem;
+        width: 50%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+}
+
+@media all and (min-width: 850px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .image_container {
+        display: block;
+        flex-grow: 1;
+        width: 50%;
+        height: 100%;
+        background-image: url('../../../Assets/img/consumidor_back_login.jpg');
+        background-size: cover;
+    }
+
+
+    .login_container {
+        flex-grow: 0;
+        width: 50%;
+    }
+
+    .form>span {
+        font-size: .8em;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: justify;
+    }
+
+    .form {
+        background-color: rgba(255, 255, 255, 0.89);
+        box-shadow: var(--box-shadow);
+        border-radius: .4rem;
+        padding: 1.5rem 2rem;
+        width: 60%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media all and (min-width: 1000px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .image_container {
+        display: block;
+        flex-grow: 1;
+        width: 60%;
+        height: 100%;
+        background-image: url('../../../Assets/img/consumidor_back_login.jpg');
+        background-size: cover;
+    }
+
+
+    .login_container {
+        flex-grow: 0;
+        width: 40%;
+    }
+
+    .form>span {
+        font-size: .8em;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: justify;
+    }
+
+    .form {
+        background-color: rgba(255, 255, 255, 0.89);
+        box-shadow: var(--box-shadow);
+        border-radius: .4rem;
+        padding: 1.5rem 2rem;
+        width: 60%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media all and (min-width: 1240px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .image_container {
+        display: block;
+        flex-grow: 1;
+        width: 70%;
+        height: 100%;
+        background-image: url('../../../Assets/img/consumidor_back_login.jpg');
+        background-size: cover;
+    }
+
+
+    .login_container {
+        flex-grow: 0;
+        width: 30%;
+    }
+
+    .form>span {
+        font-size: .8em;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: justify;
+    }
+
+    .form {
+        background-color: rgba(255, 255, 255, 0.89);
+        box-shadow: var(--box-shadow);
+        border-radius: .4rem;
+        padding: 1.5rem 2rem;
+        width: 70%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+}

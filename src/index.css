@@ -54,8 +54,8 @@ input[type="checkbox"] {
 
 /* Estilo para o checkbox quando está marcado */
 input[type="checkbox"]:checked {
-  background-color: #337ab7;
-  border-color: #337ab7;
+  background-color: var(--dark-blue);
+  border-color: var(--dark-blue);
 }
 
 /* Estilo para o ícone de marcação */

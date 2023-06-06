@@ -5,8 +5,9 @@ import styles from "./Buttons.module.css";
 type Props = {
   onClickMethod: Function;
   buttonText: string;
-  variant: "edit" | "delete" | "create";
+  variant: "edit" | "delete" | "create" | "createFull";
   type?: "submit" | "button";
+  width:string;
   disabled?: boolean;
 };
 
@@ -16,11 +17,13 @@ const Buttons = ({
   type,
   variant,
   disabled,
+  width
 }: Props) => {
   const buttonClasses = {
     edit: styles.edit,
     delete: styles.delete,
     create: styles.create,
+    createFull: styles.create_full,
   };
   return (
     <button
@@ -29,6 +32,7 @@ const Buttons = ({
       type={type ? type : "button"}
       onClick={() => onClickMethod()}
       disabled={disabled ? disabled : false}
+      style={{width:width}}
     >
       {buttonText}
     </button>

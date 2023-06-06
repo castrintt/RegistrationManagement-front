@@ -84,10 +84,11 @@ const Register = () => {
           <div className={styles.buttons_container}>
             <Buttons
               onClickMethod={() => {
-                navigate("/");
+                navigate("/login");
               }}
               buttonText={"cancelar"}
               variant={"edit"}
+              width={"auto"}
             />
             <Buttons
               onClickMethod={() => {
@@ -96,6 +97,7 @@ const Register = () => {
               type="submit"
               buttonText={"registrar"}
               variant={"create"}
+              width={"auto"}
             />
           </div>
         </form>

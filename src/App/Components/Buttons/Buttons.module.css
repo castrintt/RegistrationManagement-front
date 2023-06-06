@@ -17,6 +17,7 @@
     color: var(--icons);
     background-color: var(--disabled);
 }
+
 #id_button:disabled:hover {
     cursor: default;
     border: 1px solid var(--disabled) !important;
@@ -55,4 +56,16 @@
     border: 1px solid var(--light-blue) !important;
     color: var(--icons);
     background-color: var(--light-blue) !important;
+}
+
+.create_full {
+    border: 1px solid var(--light-blue) !important;
+    background-color: var(--light-blue) !important;
+    color: var(--icons);
+}
+
+.create_full:hover {
+    border: 1px solid var(--light-blue) !important;
+    background-color: var(--light-blue);
+    color: var(--icons);
 }

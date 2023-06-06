@@ -9,7 +9,7 @@ const RoutesApp = () => {
     <Suspense fallback={<div>Loading....</div>}>
       <Routes>
         {/* UNAUTHORIZE */}
-        <Route path="*" element={<Navigate to="unauthorize" />} />
+        <Route path="*" element={<Navigate to="not-found" />} />
         {/* PUBLIC */}
         <Route path="/register" element={<LAZY_ROUTES.Register />} />
         <Route path="/login" element={<LAZY_ROUTES.LoginClient />} />
@@ -30,6 +30,7 @@ const RoutesApp = () => {
         /> */}
 
         <Route path="unauthorize" element={<LAZY_ROUTES.Unauthorize />} />
+        <Route path="not-found" element={<LAZY_ROUTES.NotFound />} />
       </Routes>
     </Suspense>
   );
