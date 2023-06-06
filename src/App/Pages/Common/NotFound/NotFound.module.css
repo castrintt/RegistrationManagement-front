@@ -19,7 +19,7 @@
 
 .content>svg {
     font-size: 8rem;
-    color: var(--attention) !important;
+    color: var(--danger) !important;
 }
 
 .content>h1 {
