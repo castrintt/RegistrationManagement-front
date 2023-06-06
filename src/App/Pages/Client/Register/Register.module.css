@@ -1,0 +1,230 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('src/App/Assets/img/consumidor_back_login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.main_container {
+    width: 90%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.925);
+    border-radius: .4rem;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.side_bar {
+    display: none;
+}
+
+.form {
+    height: 100%;
+    padding-inline: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.form_content {
+    width: 100%;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.form_content>label {
+    width: 100%;
+}
+
+.form_content>label>span {
+    font-size: .9em;
+}
+
+.form_content>label:not(label:nth-of-type(5), label:nth-of-type(6)) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5rem;
+}
+
+.form_content>label:nth-of-type(5) {
+    margin-top: 1rem;
+}
+
+.form_content>label:nth-of-type(5),
+label:nth-of-type(6) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+}
+
+.buttons_container {
+    width: 100%;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+
+@media all and (min-width: 600px) {
+    .main_container {
+        width: 75%;
+    } 
+    .buttons_container {
+        width: 100%;
+        padding-bottom: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+@media all and (min-width: 700px) {
+    .main_container {
+        height: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .side_bar {
+        flex-grow: 0;
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 3rem;
+        border-right: 1px solid rgba(128, 128, 128, 0.438);
+    }
+
+    .side_bar>img {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1rem;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+    }
+
+    .side_bar>p {
+        width: 80%;
+        margin: 0 auto;
+        font-size: .9em;
+        color: var(--dark-blue);
+        text-align: justify;
+        line-height: 1.4rem;
+        font-weight: 500;
+    }
+
+    .form {
+        flex-grow: 1;
+        width: 60%;
+    }
+}
+
+@media all and (min-width: 1000px) {
+    .main_container {
+        width: 70%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .side_bar {
+        flex-grow: 0;
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 3rem;
+        border-right: 1px solid rgba(128, 128, 128, 0.438);
+    }
+
+    .side_bar>img {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1rem;
+        width: 12rem;
+        height: 12rem;
+        border-radius: 50%;
+    }
+
+    .side_bar>p {
+        width: 80%;
+        margin: 0 auto;
+        font-size: .9em;
+        color: var(--dark-blue);
+        text-align: justify;
+        line-height: 1.4rem;
+    }
+
+    .form {
+        flex-grow: 1;
+        width: 60%;
+    }
+}
+
+@media all and (min-width: 1400px) {
+    .main_container {
+        width: 60%;
+        height: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .side_bar {
+        flex-grow: 0;
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 3rem;
+        border-right: 1px solid rgba(128, 128, 128, 0.438);
+    }
+
+    .side_bar>img {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1rem;
+        width: 12rem;
+        height: 12rem;
+        border-radius: 50%;
+    }
+
+    .side_bar>p {
+        width: 80%;
+        margin: 0 auto;
+        font-size: .9em;
+        color: var(--dark-blue);
+        text-align: justify;
+        line-height: 1.4rem;
+    }
+
+    .form {
+        flex-grow: 1;
+        width: 60%;
+    }
+}

@@ -1,0 +1,58 @@
+#id_button {
+    font-size: .8em;
+    text-transform: uppercase;
+    padding: .5rem 1.5rem;
+    border-radius: .4rem;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    letter-spacing: .1rem;
+}
+
+#id_button:disabled {
+    cursor: default;
+    border: 1px solid var(--disabled) !important;
+    color: var(--icons);
+    background-color: var(--disabled);
+}
+#id_button:disabled:hover {
+    cursor: default;
+    border: 1px solid var(--disabled) !important;
+    color: var(--icons) !important;
+    background-color: var(--disabled) !important;
+}
+
+.edit {
+    border: 1px solid var(--attention) !important;
+    color: var(--attention);
+}
+
+.edit:hover {
+    border: 1px solid var(--attention) !important;
+    color: var(--icons);
+    background-color: var(--attention) !important;
+}
+
+.delete {
+    border: 1px solid var(--danger) !important;
+    color: var(--danger);
+}
+
+.delete:hover {
+    border: 1px solid var(--danger) !important;
+    color: var(--icons);
+    background-color: var(--danger) !important;
+}
+
+.create {
+    border: 1px solid var(--light-blue) !important;
+    color: var(--light-blue);
+}
+
+.create:hover {
+    border: 1px solid var(--light-blue) !important;
+    color: var(--icons);
+    background-color: var(--light-blue) !important;
+}
