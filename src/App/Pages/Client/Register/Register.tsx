@@ -1,12 +1,22 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect } from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Buttons from "../../../Components/Buttons/Buttons";
 import LabelLogo from "../../../Assets/white-label.png";
+import Modal from "../../../Components/Modal/Modal";
+import { useAppSelector } from "../../../Store/Store";
+import { fetchTerms } from "../../../Store/reducers/register/terms/actions";
+import { useDispatch } from "react-redux";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { fetchPolicies } from "../../../Store/reducers/register/policies/actions";
+import { loadingState } from "../../../Store/reducers/loading/loadingSlice";
+import { createUser } from "../../../Store/reducers/register/newUser/actions";
 
 type FormValues = {
-  userName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -15,94 +25,159 @@ type FormValues = {
 };
 
 const Register = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm<FormValues>();
+  const [termsModal, setTermsModal] = useState<boolean>(false);
+  const [policiesModal, setPoliciesModal] = useState<boolean>(false);
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+  const { data: termsData, loading: termsLoading } = useAppSelector(
+    (state) => state.terms
+  );
+
+  const { data: policiesData, loading: policiesLoading } = useAppSelector(
+    (state) => state.policies
+  );
+
+  const { loading: registerLoading } = useAppSelector(
+    (state) => state.register
+  );
+
+  const isLoading = (): boolean => {
+    return termsLoading || policiesLoading || registerLoading;
   };
 
+  const userConstructor = (data: FormValues) => {
+    return {
+      login: data.email,
+      userPassword: {
+        password: data.password,
+        passwordConfirm: data.confirmPassword,
+      },
+      acceptNotification: data.marketArea,
+      acceptTermsAndPolicies: data.terms,
+      registrationDate: new Date(),
+    };
+  };
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    dispatch(createUser(userConstructor(data)) as any).then(
+      ({ payload }: { payload: boolean }) => {
+        if (payload) {
+          navigate("/login");
+        }
+      }
+    );
+  };
+
+  useEffect(() => {
+    dispatch(loadingState(isLoading() ? "initialize" : "cancel"));
+  }, [termsLoading, policiesLoading, registerLoading]);
+
+  useEffect(() => {
+    dispatch(fetchTerms() as any);
+    dispatch(fetchPolicies() as any);
+  }, [dispatch]);
+
   return (
-    <div className={styles.container}>
-      <div className={styles.main_container}>
-        <div className={styles.side_bar}>
-          <img src={LabelLogo} alt="logo" />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo, ab
-            ipsam laudantium soluta odio fuga consequatur, amet maxime officia
-            eligendi deserunt facilis porro officiis aperiam qui fugiat iste
-            reprehenderit fugit.
-          </p>
+    <React.Fragment>
+      {!!termsData && (
+        <Modal isOpen={termsModal}>
+          <div className={styles.modal_container}>
+            <AiFillCloseCircle onClick={() => setTermsModal(!termsModal)} />
+            <h1>Termos de uso</h1>
+            <p>{termsData.policyDescription}</p>
+          </div>
+        </Modal>
+      )}
+      {!!policiesData && (
+        <Modal isOpen={policiesModal}>
+          <div className={styles.modal_container}>
+            <AiFillCloseCircle
+              onClick={() => setPoliciesModal(!policiesModal)}
+            />
+            <h1>Politicas de privacidade</h1>
+            <p>{policiesData.policyDescription}</p>
+          </div>
+        </Modal>
+      )}
+      <div className={styles.container}>
+        <div className={styles.main_container}>
+          <div className={styles.side_bar}>
+            <img src={LabelLogo} alt="logo" />
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo, ab
+              ipsam laudantium soluta odio fuga consequatur, amet maxime officia
+              eligendi deserunt facilis porro officiis aperiam qui fugiat iste
+              reprehenderit fugit.
+            </p>
+          </div>
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <div className={styles.form_content}>
+              <label>
+                <span>E-mail *</span>
+                <input
+                  type="email"
+                  {...register("email")}
+                  {...{ required: true }}
+                />
+              </label>
+              <label>
+                <span>Senha *</span>
+                <input
+                  type="password"
+                  {...register("password")}
+                  {...{ required: true }}
+                />
+              </label>
+              <label>
+                <span>Confirmar senha *</span>
+                <input
+                  type="password"
+                  {...register("confirmPassword")}
+                  {...{ required: true }}
+                />
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  {...register("terms")}
+                  {...{ required: true }}
+                />
+                <span>Confirmar aceite dos termos </span>
+              </label>
+              <label>
+                <input type="checkbox" {...register("marketArea")} />
+                <span>Confirma que quer receber notificações </span>
+              </label>
+              <div className={styles.terms_policies_container}>
+                <span onClick={() => setTermsModal(!termsModal)}>Termo</span>
+                <span onClick={() => setPoliciesModal(!policiesModal)}>
+                  Politicas de privacidade
+                </span>
+              </div>
+            </div>
+            <div className={styles.buttons_container}>
+              <Buttons
+                onClickMethod={() => {
+                  navigate("/login");
+                }}
+                buttonText={"cancelar"}
+                variant={"edit"}
+                width={"auto"}
+              />
+              <Buttons
+                onClickMethod={() => {}}
+                type="submit"
+                buttonText={"registrar"}
+                variant={"create"}
+                width={"auto"}
+              />
+            </div>
+          </form>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <div className={styles.form_content}>
-            <label>
-              <span>Nome Completo *</span>
-              <input
-                type="text"
-                {...register("userName")}
-                {...{ required: true }}
-              />
-            </label>
-            <label>
-              <span>E-mail *</span>
-              <input
-                type="email"
-                {...register("email")}
-                {...{ required: true }}
-              />
-            </label>
-            <label>
-              <span>Senha *</span>
-              <input
-                type="password"
-                {...register("password")}
-                {...{ required: true }}
-              />
-            </label>
-            <label>
-              <span>Confirmar senha *</span>
-              <input
-                type="password"
-                {...register("confirmPassword")}
-                {...{ required: true }}
-              />
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                {...register("terms")}
-                {...{ required: true }}
-              />
-              <span>Confirmar aceite dos termos </span>
-            </label>
-            <label>
-              <input type="checkbox" {...register("marketArea")} />
-              <span>Confirma que quer receber notificações </span>
-            </label>
-          </div>
-          <div className={styles.buttons_container}>
-            <Buttons
-              onClickMethod={() => {
-                navigate("/login");
-              }}
-              buttonText={"cancelar"}
-              variant={"edit"}
-              width={"auto"}
-            />
-            <Buttons
-              onClickMethod={() => {
-                console.clear();
-              }}
-              type="submit"
-              buttonText={"registrar"}
-              variant={"create"}
-              width={"auto"}
-            />
-          </div>
-        </form>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

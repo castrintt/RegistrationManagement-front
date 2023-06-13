@@ -1,0 +1,22 @@
+.dialog_black_screen {
+    width: 100vw;
+    height: 100vh;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.425);
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main_content {
+    border-radius: .4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow:  -var(--box-shadow);
+}
