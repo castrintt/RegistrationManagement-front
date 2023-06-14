@@ -1,12 +1,13 @@
-import { Policies } from "../../domain/entities/response/policies/policies";
-import { Terms } from "../../domain/entities/response/terms/terms";
+import { Policies } from "../../domain/entities/response/client/policies/policies";
+import { Terms } from "../../domain/entities/response/client/terms/terms";
 import { IRegisterService } from "./interfaces/IRegister";
 import { httpPublic } from "../../../config/axios";
-import { CreateUserRequest } from "../../domain/entities/request/CreateUserRequest";
+import { CreateUserRequest } from "../../domain/entities/request/client/registerUser/CreateUserRequest";
 import { callToast } from "../../../utils/toastCall";
+import { AxiosInstance } from "axios";
 
 export class RegisterService implements IRegisterService {
-  private _http = httpPublic;
+  private _http: AxiosInstance = httpPublic;
 
   async getTerms(): Promise<Terms> {
     return await this._http

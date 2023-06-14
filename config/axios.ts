@@ -9,9 +9,10 @@ const getEnvironmentUrl = () => {
 };
 
 const getTokenLocalStorage = (): string => {
-  const userLocalInfoEncrypted = localStorage.getItem("client");
+  const userLocalInfoEncrypted = localStorage.getItem("client") ?? null;
   if (userLocalInfoEncrypted) {
-    return `Bearer ${decryptData(userLocalInfoEncrypted)["token"]}`;
+    const decrypt = decryptData(userLocalInfoEncrypted)["token"] ;
+    return `Bearer ${decrypt}`;
   }
   return "Bearer";
 };

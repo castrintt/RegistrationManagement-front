@@ -6,4 +6,5 @@ export const rootReducer = combineReducers({
   policies: Reducers.policiesReducer,
   loading: Reducers.loadingSlice,
   register: Reducers.registerReducer,
+  clientLogin: Reducers.loginReducer,
 });

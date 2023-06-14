@@ -1,9 +1,16 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect } from "react";
 import styles from "./Login.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Buttons from "../../../Components/Buttons/Buttons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoImage from "../../../Assets/white-label.png";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../Store/reducers/clientLogin/actions";
+import { useAppSelector } from "../../../Store/Store";
+import { loadingState } from "../../../Store/reducers/loading/loadingSlice";
 
 type FormValues = {
   email: string;
@@ -13,10 +20,31 @@ type FormValues = {
 
 const Login = () => {
   const { register, handleSubmit } = useForm<FormValues>();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading } = useAppSelector((state) => state.clientLogin);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    dispatch(
+      loginUser({
+        login: data.email,
+        password: data.password,
+        saveLogin: data.saveAccount,
+      }) as any
+    ).then(({ payload }: { payload: boolean }) => {
+      if (payload) {
+        navigate("/client/home");
+      }
+    });
   };
+
+  const loadingObserver = () => {
+    dispatch(loadingState(loading ? "initialize" : "cancel"));
+  };
+
+  useEffect(() => {
+    loadingObserver();
+  }, [loading]);
 
   return (
     <div className={styles.container}>
@@ -38,7 +66,8 @@ const Login = () => {
             <span>salvar login</span>
           </label>
           <Buttons
-            onClickMethod={() => console.clear()}
+            onClickMethod={() => {}}
+            type="submit"
             buttonText={"entrar"}
             variant={"createFull"}
             width={`100%`}

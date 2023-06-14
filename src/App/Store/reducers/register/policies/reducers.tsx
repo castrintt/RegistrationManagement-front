@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Terms } from "../../../../../../business/domain/entities/response/terms/terms";
+import { Policies } from "../../../../../../business/domain/entities/response/client/policies/policies";
 import { fetchPolicies } from "./actions";
 
 export type InitialState = {
-  data: Terms;
+  data: Policies;
   loading: boolean;
   error: string | null;
 };

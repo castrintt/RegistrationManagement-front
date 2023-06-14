@@ -26,14 +26,14 @@ const RoutesApp = () => {
 
           {/* AUTHORIZED CLIENT EXEMPLE */}
 
-          {/* <Route
-          path="login"
-          element={
-            <ProtectedRoute>
-              <LAZY_ROUTES.LoginClient />
-            </ProtectedRoute>
-          }
-        /> */}
+          <Route
+            path="/client/home"
+            element={
+              <ProtectedRoute>
+                <LAZY_ROUTES.HomeClient />
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="unauthorize" element={<LAZY_ROUTES.Unauthorize />} />
           <Route path="not-found" element={<LAZY_ROUTES.NotFound />} />

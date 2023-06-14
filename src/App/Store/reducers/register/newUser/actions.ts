@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RegisterService } from "../../../../../../business/service/client/Register.service";
-import { CreateUserRequest } from "../../../../../../business/domain/entities/request/CreateUserRequest";
+import { CreateUserRequest } from "../../../../../../business/domain/entities/request/client/registerUser/CreateUserRequest";
 
 const registerService = new RegisterService();
 
 export const createUser = createAsyncThunk(
-  "get/policies",
+  "post/register_client",
   async (client: CreateUserRequest) => {
     return await registerService.clientRegister(client).then((response) => {
       if (response) {

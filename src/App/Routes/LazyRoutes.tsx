@@ -5,6 +5,7 @@ const LoginClient = lazy(() => import("../Pages/Client/Login/Login"));
 const Unauthorize = lazy(
   () => import("../Pages/Common/Unauthorize/Unauthorize")
 );
-const NotFound = lazy(() => import('../Pages/Common/NotFound/NotFound'))
+const NotFound = lazy(() => import("../Pages/Common/NotFound/NotFound"));
+const HomeClient = lazy(() => import("../Pages/Client/Home/Home"));
 
-export { Register, Unauthorize, LoginClient, NotFound };
+export { Register, Unauthorize, LoginClient, NotFound, HomeClient };
