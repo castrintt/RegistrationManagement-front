@@ -8,7 +8,7 @@ import Buttons from "../../../Components/Buttons/Buttons";
 import { Link, useNavigate } from "react-router-dom";
 import LogoImage from "../../../Assets/white-label.png";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../../Store/reducers/clientLogin/actions";
+import { authClient } from "../../../Store/reducers/authClient/actions";
 import { useAppSelector } from "../../../Store/Store";
 import { loadingState } from "../../../Store/reducers/loading/loadingSlice";
 
@@ -26,7 +26,7 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     dispatch(
-      loginUser({
+      authClient({
         login: data.email,
         password: data.password,
         saveLogin: data.saveAccount,

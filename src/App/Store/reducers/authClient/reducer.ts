@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "./actions";
+import { authClient } from "./actions";
 
 type InitialState = {
   error: string | null;
@@ -11,24 +11,24 @@ const initialState: InitialState = {
   loading: false,
 };
 
-const loginReducer = createSlice({
-  name: "loginReducer",
+const authClientReducer = createSlice({
+  name: "authClientReducer",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loginUser.pending, (state) => {
+    builder.addCase(authClient.pending, (state) => {
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(loginUser.fulfilled, (state) => {
+    builder.addCase(authClient.fulfilled, (state) => {
       state.loading = false;
       state.error = null;
     });
-    builder.addCase(loginUser.rejected, (state, action) => {
+    builder.addCase(authClient.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message ?? null;
     });
   },
 });
 
-export default loginReducer.reducer;
+export default authClientReducer.reducer;
