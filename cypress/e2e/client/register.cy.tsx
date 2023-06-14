@@ -14,10 +14,6 @@ type ApiPostTesting = {
 };
 
 describe("REGISTER", () => {
-  beforeEach(() => {
-    cy.visit("/register");
-  });
-
   describe("API CALLS TESTING", () => {
     const registerGetTesting = (getConstructor: ApiGetTesting) => {
       const cyRequestConfiguration = {
@@ -125,11 +121,147 @@ describe("REGISTER", () => {
   });
 
   describe("COMPONENT TESTING", () => {
+    beforeEach(() => {
+      cy.visit("/register");
+    });
+
     const cyInterpol = (dataCy: string): string => {
-      return `['data-cy="${dataCy}"']`;
+      return `[data-cy="${dataCy}"]`;
     };
 
-    describe("SUCCESS CASES", () => {});
-    describe("ERROR CASES", () => {});
+    const registerDataFlux = (user: CreateUserRequest) => {
+      cy.get(cyInterpol("email-input"))
+        .should("be.visible")
+        .should("have.value", "")
+        .type(user.login);
+      cy.get(cyInterpol("password-input"))
+        .should("be.visible")
+        .should("have.value", "")
+        .type(user.userPassword.password);
+      cy.get(cyInterpol("confirm-password-input"))
+        .should("be.visible")
+        .should("have.value", "")
+        .type(user.userPassword.passwordConfirm);
+      cy.get(cyInterpol("terms-checkbox"))
+        .should("be.visible")
+        .should("be.not.checked");
+      if (user.acceptTermsAndPolicies) {
+        cy.get(cyInterpol("terms-checkbox")).check();
+      }
+      cy.get(cyInterpol("market-area-checkbox"))
+        .should("be.visible")
+        .should("be.not.checked");
+      if (user.acceptNotification) {
+        cy.get(cyInterpol("market-area-checkbox")).check();
+      }
+    };
+
+    describe("SUCCESS CASES", () => {
+      it("should render", () => {
+        cy.get(cyInterpol("register-container")).should("be.visible");
+      });
+
+      it("should be able to type or check all inputs", () => {
+        registerDataFlux(MOCK.alreadyRegisterAttempt);
+      });
+
+      it('should appear "Registro completo!" for a successful register attempts', () => {
+        registerDataFlux(MOCK.newRegisterAttempt);
+        cy.contains("registrar")
+          .should("have.text", "registrar")
+          .should("be.visible")
+          .should("be.enabled")
+          .click();
+        cy.contains("Registro completo!").should("be.visible");
+        cy.location("pathname").should("be.eq", "/login");
+      });
+
+      it('should open terms modal if click in "Termos de uso"', () => {
+        cy.get(cyInterpol("terms-modal-button"))
+          .should("be.visible")
+          .should("have.text", "Termo de uso")
+          .click();
+        cy.get(cyInterpol("terms-modal")).should("be.visible");
+        cy.get(cyInterpol("terms-modal-title"))
+          .should("be.visible")
+          .should("have.text", "Termos de uso");
+        cy.get(cyInterpol("close-icon-terms")).should("be.visible").click();
+        cy.get(cyInterpol("terms-modal")).should("not.be.visible");
+      });
+
+      it('should open policies modal if click in "Politicas de privacidade"', () => {
+        cy.get(cyInterpol("policies-modal-button"))
+          .should("be.visible")
+          .should("have.text", "Politicas de privacidade")
+          .click();
+        cy.get(cyInterpol("policies-modal")).should("be.visible");
+        cy.get(cyInterpol("policies-modal-title"))
+          .should("be.visible")
+          .should("have.text", "Politicas de privacidade");
+        cy.get(cyInterpol("close-icon-policies")).should("be.visible").click();
+        cy.get(cyInterpol("policies-modal")).should("not.be.visible");
+      });
+
+      it("should not render the sidebar, if the screen width is bellow 700", () => {
+        cy.viewport(699, 600);
+        cy.get(cyInterpol("sidebar")).should("not.be.visible");
+        cy.viewport(600, 600);
+        cy.get(cyInterpol("sidebar")).should("not.be.visible");
+        cy.viewport(500, 600);
+        cy.get(cyInterpol("sidebar")).should("not.be.visible");
+        cy.viewport(400, 600);
+        cy.get(cyInterpol("sidebar")).should("not.be.visible");
+        cy.viewport(300, 600);
+        cy.get(cyInterpol("sidebar")).should("not.be.visible");
+      });
+
+      it("should render the sidebar if the screen width is above 700", () => {
+        cy.viewport(700, 600);
+        cy.get(cyInterpol("sidebar")).should("be.visible");
+        cy.viewport(800, 600);
+        cy.get(cyInterpol("sidebar")).should("be.visible");
+        cy.viewport(900, 600);
+        cy.get(cyInterpol("sidebar")).should("be.visible");
+        cy.viewport(1000, 600);
+        cy.get(cyInterpol("sidebar")).should("be.visible");
+      });
+
+      it("should navigate to /login, if click into cancel button", () => {
+        cy.contains("cancelar")
+          .should("be.visible")
+          .should("have.text", "cancelar")
+          .should("be.enabled")
+          .click();
+        cy.location("pathname").should("be.eq", "/login");
+      });
+    });
+
+    describe("ERROR CASES", () => {
+      it("should focus on email input if try it to register an user without an email, or with an invalid email", () => {
+        registerDataFlux(MOCK.invalidEmailAttempt);
+        cy.contains("registrar").should("be.visible").click();
+        cy.get(cyInterpol("email-input")).should("be.focused");
+      });
+
+      it("should appear a message with text (As senhas devem ser iguais!) if confirm password does not match to password", () => {
+        registerDataFlux(MOCK.confirmPasswordDoesNotMatchToPasswordAttempt);
+        cy.contains("registrar").should("be.visible").click();
+        cy.contains("As senhas devem ser iguais!").should("be.visible");
+      });
+
+      it("should focus on confirm terms checkbox for a invalid register attempt without accepting the terms", () => {
+        registerDataFlux(MOCK.withoutTermsAttempt);
+        cy.contains("registrar").should("be.visible").click();
+        cy.get(cyInterpol("terms-checkbox")).should("be.focused");
+      });
+
+      it("should return an message with text (Este Login já possui um registro no sistema.) if you already have an login", () => {
+        registerDataFlux(MOCK.alreadyRegisterAttempt);
+        cy.contains("registrar").should("be.visible").click();
+        cy.contains(MOCK.alreadyRegisterAttemptExpectedResponse).should(
+          "be.visible"
+        );
+      });
+    });
   });
 });

@@ -15,6 +15,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { fetchPolicies } from "../../../Store/reducers/register/policies/actions";
 import { loadingState } from "../../../Store/reducers/loading/loadingSlice";
 import { createUser } from "../../../Store/reducers/register/newUser/actions";
+import { callToast } from "../../../../../utils/toastCall";
 
 type FormValues = {
   email: string;
@@ -61,13 +62,17 @@ const Register = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    dispatch(createUser(userConstructor(data)) as any).then(
-      ({ payload }: { payload: boolean }) => {
-        if (payload) {
-          navigate("/login");
+    if (data.confirmPassword !== data.password) {
+      callToast("As senhas devem ser iguais!", "warning");
+    } else {
+      dispatch(createUser(userConstructor(data)) as any).then(
+        ({ payload }: { payload: boolean }) => {
+          if (payload) {
+            navigate("/login");
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   useEffect(() => {
@@ -83,27 +88,31 @@ const Register = () => {
     <React.Fragment>
       {!!termsData && (
         <Modal isOpen={termsModal}>
-          <div className={styles.modal_container}>
-            <AiFillCloseCircle onClick={() => setTermsModal(!termsModal)} />
-            <h1>Termos de uso</h1>
+          <div className={styles.modal_container} data-cy="terms-modal">
+            <AiFillCloseCircle
+              data-cy="close-icon-terms"
+              onClick={() => setTermsModal(!termsModal)}
+            />
+            <h1 data-cy="terms-modal-title">Termos de uso</h1>
             <p>{termsData.policyDescription}</p>
           </div>
         </Modal>
       )}
       {!!policiesData && (
         <Modal isOpen={policiesModal}>
-          <div className={styles.modal_container}>
+          <div className={styles.modal_container} data-cy="policies-modal">
             <AiFillCloseCircle
+              data-cy="close-icon-policies"
               onClick={() => setPoliciesModal(!policiesModal)}
             />
-            <h1>Politicas de privacidade</h1>
+            <h1 data-cy="policies-modal-title">Politicas de privacidade</h1>
             <p>{policiesData.policyDescription}</p>
           </div>
         </Modal>
       )}
-      <div className={styles.container}>
+      <div className={styles.container} data-cy="register-container">
         <div className={styles.main_container}>
-          <div className={styles.side_bar}>
+          <div className={styles.side_bar} data-cy="sidebar">
             <img src={LabelLogo} alt="logo" />
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo, ab
@@ -112,12 +121,17 @@ const Register = () => {
               reprehenderit fugit.
             </p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <form
+            data-cy="form"
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.form}
+          >
             <div className={styles.form_content}>
               <label>
                 <span>E-mail *</span>
                 <input
                   type="email"
+                  data-cy="email-input"
                   {...register("email")}
                   {...{ required: true }}
                 />
@@ -126,6 +140,7 @@ const Register = () => {
                 <span>Senha *</span>
                 <input
                   type="password"
+                  data-cy="password-input"
                   {...register("password")}
                   {...{ required: true }}
                 />
@@ -134,6 +149,7 @@ const Register = () => {
                 <span>Confirmar senha *</span>
                 <input
                   type="password"
+                  data-cy="confirm-password-input"
                   {...register("confirmPassword")}
                   {...{ required: true }}
                 />
@@ -141,18 +157,31 @@ const Register = () => {
               <label>
                 <input
                   type="checkbox"
+                  data-cy="terms-checkbox"
                   {...register("terms")}
                   {...{ required: true }}
                 />
                 <span>Confirmar aceite dos termos </span>
               </label>
               <label>
-                <input type="checkbox" {...register("marketArea")} />
+                <input
+                  data-cy="market-area-checkbox"
+                  type="checkbox"
+                  {...register("marketArea")}
+                />
                 <span>Confirma que quer receber notificações </span>
               </label>
               <div className={styles.terms_policies_container}>
-                <span onClick={() => setTermsModal(!termsModal)}>Termo</span>
-                <span onClick={() => setPoliciesModal(!policiesModal)}>
+                <span
+                  data-cy="terms-modal-button"
+                  onClick={() => setTermsModal(!termsModal)}
+                >
+                  Termo de uso
+                </span>
+                <span
+                  data-cy="policies-modal-button"
+                  onClick={() => setPoliciesModal(!policiesModal)}
+                >
                   Politicas de privacidade
                 </span>
               </div>
