@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { CreateUserRequest } from "../../../business/domain/entities/request/CreateUserRequest";
+import { CreateUserRequest } from "../../../../business/domain/entities/request/client/registerUser/CreateUserRequest";
 
 const randomEmail = faker.internet.email();
 const randomEmailComponentTesting = faker.internet.email();
@@ -73,7 +73,6 @@ const invalidEmailAttemptExpectedResponse =
   "Campo permite entre {MinLength} e {MaxLength} caracteres.";
 const passwordMatchAttemptExpectedResponse =
   "Confirmação não confere com a senha.";
-
 
 export {
   successAttempt,

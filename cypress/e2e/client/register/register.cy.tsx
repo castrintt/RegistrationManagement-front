@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 import * as MOCK from "./register__mock__";
-import { CreateUserRequest } from "../../../business/domain/entities/request/CreateUserRequest";
+import { CreateUserRequest } from "../../../../business/domain/entities/request/client/registerUser/CreateUserRequest";
 
 type ApiGetTesting = {
   apiUrl: string;

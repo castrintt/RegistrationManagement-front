@@ -47,22 +47,30 @@ const Login = () => {
   }, [loading]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.image_container}></div>
+    <div className={styles.container} data-cy="container">
+      <div className={styles.image_container} data-cy="image-container"></div>
       <div className={styles.login_container}>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <img src={LogoImage} alt="" />
           <h1>Login</h1>
           <label>
             <span>E-mail</span>
-            <input type="text" {...register("email")} />
+            <input type="text" {...register("email")} data-cy="email-input" />
           </label>
           <label>
             <span>Senha</span>
-            <input type="password" {...register("password")} />
+            <input
+              type="password"
+              {...register("password")}
+              data-cy="password-input"
+            />
           </label>
           <label>
-            <input type="checkbox" {...register("saveAccount")} />
+            <input
+              type="checkbox"
+              {...register("saveAccount")}
+              data-cy="save-login"
+            />
             <span>salvar login</span>
           </label>
           <Buttons
@@ -72,7 +80,7 @@ const Login = () => {
             variant={"createFull"}
             width={`100%`}
           />
-          <span>
+          <span data-cy="navigate-register">
             Não possui uma conta? <Link to="/register">clique aqui</Link>
           </span>
         </form>

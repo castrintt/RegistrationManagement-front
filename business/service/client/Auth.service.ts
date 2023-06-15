@@ -22,7 +22,13 @@ export class AuthService implements IAuthService {
     httpPrivate.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }
 
-  setUserLocalStorageAccess(userResponse: AuthUserResponse): void {
+  setUserLocalStorageAccess(userResponse: {
+    message: string;
+    accessToken: string;
+    refreshToken: string;
+    expiry: number;
+    saveAccount: boolean;
+  }): void {
     localStorage.setItem("encryptClient", encryptData(userResponse));
     this.setDefaultHeaderAuthorizationConfiguration(userResponse.accessToken);
   }
@@ -35,7 +41,10 @@ export class AuthService implements IAuthService {
       })
       .then((response) => {
         if (response.status === 200 && response.data) {
-          this.setUserLocalStorageAccess(response.data);
+          this.setUserLocalStorageAccess({
+            ...response.data,
+            saveAccount: user.saveLogin,
+          });
           const message = response.data.message;
           callToast(message, "success");
           return response.data;

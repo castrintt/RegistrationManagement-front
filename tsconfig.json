@@ -22,7 +22,9 @@
   "include": [
     "src",
     "cypress.d.ts",
+    "cypress.d.tsx",
     "cypress/**/*.ts",
+    "cypress/**/*.tsx",
     "config",
     "cypress/plugins/index.js"
   ],

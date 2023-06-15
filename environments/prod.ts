@@ -1,5 +1,5 @@
 export const prodEnvironment = {
   production: true,
-  baseUrl: "production Url Here",
-  encryptSecretKey: "secret here",
+  baseUrl: "{{prodEnvironment.baseUrl}}",
+  encryptSecretKey: "{{prodEnvironment.encryptSecretKey}}",
 };
