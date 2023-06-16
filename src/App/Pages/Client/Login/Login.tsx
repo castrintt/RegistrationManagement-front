@@ -55,7 +55,7 @@ const Login = () => {
           <h1>Login</h1>
           <label>
             <span>E-mail</span>
-            <input type="text" {...register("email")} data-cy="email-input" />
+            <input type="email" {...register("email")} data-cy="email-input" />
           </label>
           <label>
             <span>Senha</span>
@@ -80,7 +80,7 @@ const Login = () => {
             variant={"createFull"}
             width={`100%`}
           />
-          <span data-cy="navigate-register">
+          <span>
             Não possui uma conta? <Link to="/register">clique aqui</Link>
           </span>
         </form>

@@ -93,11 +93,58 @@ describe("LOGIN", () => {
         cy.viewport(900, 650);
         cy.get(cyInterpol("image-container")).should("be.visible");
       });
+
       it("should not render an image if the width is lower than 850px", () => {
         cy.viewport(800, 650);
         cy.get(cyInterpol("image-container")).should("not.be.visible");
       });
+
+      it("should navigate to client/home for a successful login attempt", () => {
+        cy.get(cyInterpol("email-input")).type(MOCK.successLoginAttempt.login);
+        cy.get(cyInterpol("password-input")).type(
+          MOCK.successLoginAttempt.password
+        );
+        cy.contains("entrar").should("be.visible").should("be.enabled").click();
+        cy.location("pathname").should("be.eq", "/client/home");
+        cy.contains(MOCK.successAttemptMessage).should("be.visible");
+      });
+
+      it('should navigate to register if click in "clique aqui"', () => {
+        cy.contains("clique aqui").click();
+        cy.location("pathname").should("be.eq", "/register");
+      });
+
+      it("should set in localStorage the attribute encryptClient", () => {
+        cy.get(cyInterpol("email-input")).type(MOCK.successLoginAttempt.login);
+        cy.get(cyInterpol("password-input")).type(
+          MOCK.successLoginAttempt.password
+        );
+        cy.contains("entrar").should("be.visible").should("be.enabled").click();
+        cy.location("pathname").should("be.eq", "/client/home");
+        cy.contains(MOCK.successAttemptMessage).should("be.visible");
+        cy.window().then((win) => {
+          expect(win.localStorage.getItem("encryptClient")).not.to.be.null;
+        });
+      });
     });
-    // describe("ERROR CASES", () => {});
+    describe("ERROR CASES", () => {
+      it("should return a message for a invalid login attempt", () => {
+        cy.get(cyInterpol("email-input")).type(MOCK.randomLoginAttempt.login);
+        cy.get(cyInterpol("password-input")).type(
+          MOCK.randomLoginAttempt.password
+        );
+        cy.contains("entrar").should("be.visible").should("be.enabled").click();
+        cy.contains(MOCK.invalidAttemptMessage).should("be.visible");
+      });
+
+      it("should focus on email if try to login with an invalid email", () => {
+        cy.get(cyInterpol("email-input")).type(MOCK.invalidLoginAttempt.login);
+        cy.get(cyInterpol("password-input")).type(
+          MOCK.invalidLoginAttempt.password
+        );
+        cy.contains("entrar").should("be.visible").should("be.enabled").click();
+        cy.get(cyInterpol("email-input")).should("be.focused");
+      });
+    });
   });
 });

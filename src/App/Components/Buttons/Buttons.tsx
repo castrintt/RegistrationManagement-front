@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./Buttons.module.css";
 
-type Props = {
+export type Props = {
   onClickMethod: Function;
   buttonText: string;
   variant: "edit" | "delete" | "create" | "createFull";

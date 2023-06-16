@@ -45,6 +45,9 @@ export class AuthService implements IAuthService {
             ...response.data,
             saveAccount: user.saveLogin,
           });
+          this.setDefaultHeaderAuthorizationConfiguration(
+            response.data.accessToken
+          );
           const message = response.data.message;
           callToast(message, "success");
           return response.data;

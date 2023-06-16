@@ -5,6 +5,8 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-mdx-gfm",
+    "storybook-css-modules",
   ],
   framework: {
     name: "@storybook/react-vite",

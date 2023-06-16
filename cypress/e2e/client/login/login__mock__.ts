@@ -14,6 +14,11 @@ const randomLoginAttempt: AuthUserRequest = {
   password: randomPassword,
   saveLogin: false,
 };
+const invalidLoginAttempt: AuthUserRequest = {
+  login: 'Igor',
+  password: randomPassword,
+  saveLogin: false,
+};
 
 const successAttemptMessage = "autenticado com sucesso.";
 const invalidAttemptMessage = "Login ou senha inválido.";
@@ -21,6 +26,7 @@ const invalidAttemptMessage = "Login ou senha inválido.";
 export {
   successLoginAttempt,
   randomLoginAttempt,
+  invalidLoginAttempt,
   successAttemptMessage,
   invalidAttemptMessage,
 };
