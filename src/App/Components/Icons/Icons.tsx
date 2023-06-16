@@ -1,42 +1,42 @@
-import React from "react";
-import { MdPendingActions } from "react-icons/md";
+/* eslint-disable @typescript-eslint/ban-types */
 import {
-  AiOutlineHome,
-  AiOutlineUser,
-  AiOutlineEyeInvisible,
   AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineHome,
   AiOutlineSearch,
+  AiOutlineUser,
 } from "react-icons/ai";
-import { RxDashboard } from "react-icons/rx";
-import { SlLogout } from "react-icons/sl";
+import { BiAddToQueue } from "react-icons/bi";
+import { BsFillTrash3Fill } from "react-icons/bs";
+import { FaRegAddressCard, FaStackExchange } from "react-icons/fa";
+import { FiEdit, FiFilter } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoIosNotificationsOutline } from "react-icons/io";
-import { FiFilter } from "react-icons/fi";
-import { SiAdguard } from "react-icons/si";
+import { GrDocumentVerified, GrGroup, GrKey } from "react-icons/gr";
+import { HiOutlineExclamation, HiOutlineUser } from "react-icons/hi";
 import {
   HiOutlineChatBubbleLeftEllipsis,
   HiOutlineCog8Tooth,
 } from "react-icons/hi2";
-import { HiOutlineExclamation, HiOutlineUser } from "react-icons/hi";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoWarningOutline } from "react-icons/io5";
+import { MdOutlineDragHandle, MdPendingActions } from "react-icons/md";
 import { RiCloseCircleFill, RiEyeCloseLine } from "react-icons/ri";
-import { GrKey, GrGroup, GrDocumentVerified } from "react-icons/gr";
-import { BiAddToQueue } from "react-icons/bi";
-import { FiEdit } from "react-icons/fi";
-import { BsFillTrash3Fill } from "react-icons/bs";
-import { MdOutlineDragHandle } from "react-icons/md";
-import { FaStackExchange, FaRegAddressCard } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
+import { SiAdguard } from "react-icons/si";
+import { SlLogout } from "react-icons/sl";
+import styles from "./Icons.module.css";
 
-type Colors =
+export type Colors =
   | "red"
   | "green"
   | "purple"
   | "orange"
   | "lightBlue"
+  | "darkBlue"
   | "white"
   | "disabled";
 
-type IconName =
+export type IconName =
   | "pending"
   | "home"
   | "user"
@@ -66,99 +66,242 @@ type IconName =
   | "configTerms"
   | "address";
 
-type Props = {
+export type IconsProps = {
   icon: IconName;
   color: Colors;
   size: string;
+  action: Function;
+  isActive: boolean;
 };
 
-const Icons = ({ icon, color, size }: Props) => {
+const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
   const allColors = {
     red: "#D22929",
     green: "#62C132",
     purple: "#793DC7",
     orange: "#DBA000",
     lightBlue: "#3DBAC7",
+    darkBlue: "#00388A",
     white: "white",
     disabled: "#BBBBBB",
   };
 
+  const colorCheckStyle = () => {
+    if (isActive) {
+      return {
+        color: allColors.lightBlue,
+        fontSize: size,
+      };
+    }
+    return {
+      color: allColors[color],
+      fontSize: size,
+    };
+  };
+
+  const classNameCheck = () => {
+    if (color === "white" || color === "darkBlue") {
+      return styles.hover_action;
+    }
+    return "";
+  };
+
   const selectedIcon = {
     pending: (
-      <MdPendingActions style={{ color: allColors[color], fontSize: size }} />
+      <MdPendingActions
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
-    home: <AiOutlineHome style={{ color: allColors[color], fontSize: size }} />,
-    user: <AiOutlineUser style={{ color: allColors[color], fontSize: size }} />,
+    home: (
+      <AiOutlineHome
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
+    user: (
+      <AiOutlineUser
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
     dashboard: (
-      <RxDashboard style={{ color: allColors[color], fontSize: size }} />
+      <RxDashboard
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
-    logout: <SlLogout style={{ color: allColors[color], fontSize: size }} />,
+    logout: (
+      <SlLogout
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
     hamburger: (
-      <GiHamburgerMenu style={{ color: allColors[color], fontSize: size }} />
+      <GiHamburgerMenu
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     notification: (
       <IoIosNotificationsOutline
-        style={{ color: allColors[color], fontSize: size }}
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
       />
     ),
-    terms: <SiAdguard style={{ color: allColors[color], fontSize: size }} />,
-    filter: <FiFilter style={{ color: allColors[color], fontSize: size }} />,
+    terms: (
+      <SiAdguard
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
+    filter: (
+      <FiFilter
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
     inService: (
       <HiOutlineChatBubbleLeftEllipsis
-        style={{ color: allColors[color], fontSize: size }}
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
       />
     ),
     exclamation: (
       <HiOutlineExclamation
-        style={{ color: allColors[color], fontSize: size }}
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
       />
     ),
     warning: (
-      <IoWarningOutline style={{ color: allColors[color], fontSize: size }} />
+      <IoWarningOutline
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     closed: (
-      <RiCloseCircleFill style={{ color: allColors[color], fontSize: size }} />
+      <RiCloseCircleFill
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     cutEye: (
       <AiOutlineEyeInvisible
-        style={{ color: allColors[color], fontSize: size }}
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
       />
     ),
     openEye: (
-      <AiOutlineEye style={{ color: allColors[color], fontSize: size }} />
+      <AiOutlineEye
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     closedEye: (
-      <RiEyeCloseLine style={{ color: allColors[color], fontSize: size }} />
+      <RiEyeCloseLine
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     configuration: (
-      <HiOutlineCog8Tooth style={{ color: allColors[color], fontSize: size }} />
+      <HiOutlineCog8Tooth
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
-    key: <GrKey style={{ color: allColors[color], fontSize: size }} />,
-    group: <GrGroup style={{ color: allColors[color], fontSize: size }} />,
+    key: (
+      <GrKey
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
+    group: (
+      <GrGroup
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
     admUser: (
-      <HiOutlineUser style={{ color: allColors[color], fontSize: size }} />
+      <HiOutlineUser
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     search: (
-      <AiOutlineSearch style={{ color: allColors[color], fontSize: size }} />
+      <AiOutlineSearch
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
-    add: <BiAddToQueue style={{ color: allColors[color], fontSize: size }} />,
-    edit: <FiEdit style={{ color: allColors[color], fontSize: size }} />,
+    add: (
+      <BiAddToQueue
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
+    edit: (
+      <FiEdit
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
+    ),
     trash: (
-      <BsFillTrash3Fill style={{ color: allColors[color], fontSize: size }} />
+      <BsFillTrash3Fill
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     drag: (
       <MdOutlineDragHandle
-        style={{ color: allColors[color], fontSize: size }}
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
       />
     ),
     aproveDocument: (
-      <GrDocumentVerified style={{ color: allColors[color], fontSize: size }} />
+      <GrDocumentVerified
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     configTerms: (
-      <FaStackExchange style={{ color: allColors[color], fontSize: size }} />
+      <FaStackExchange
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
     address: (
-      <FaRegAddressCard style={{ color: allColors[color], fontSize: size }} />
+      <FaRegAddressCard
+        style={colorCheckStyle()}
+        className={classNameCheck()}
+        onClick={() => action()}
+      />
     ),
   };
 
