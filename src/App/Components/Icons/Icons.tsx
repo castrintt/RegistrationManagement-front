@@ -109,6 +109,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
   const selectedIcon = {
     pending: (
       <MdPendingActions
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -116,6 +117,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     home: (
       <AiOutlineHome
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -123,6 +125,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     user: (
       <AiOutlineUser
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -130,6 +133,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     dashboard: (
       <RxDashboard
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -137,6 +141,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     logout: (
       <SlLogout
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -144,6 +149,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     hamburger: (
       <GiHamburgerMenu
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -151,6 +157,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     notification: (
       <IoIosNotificationsOutline
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -158,6 +165,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     terms: (
       <SiAdguard
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -165,6 +173,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     filter: (
       <FiFilter
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -172,6 +181,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     inService: (
       <HiOutlineChatBubbleLeftEllipsis
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -179,6 +189,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     exclamation: (
       <HiOutlineExclamation
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -186,6 +197,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     warning: (
       <IoWarningOutline
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -193,6 +205,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     closed: (
       <RiCloseCircleFill
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -200,6 +213,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     cutEye: (
       <AiOutlineEyeInvisible
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -207,6 +221,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     openEye: (
       <AiOutlineEye
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -214,6 +229,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     closedEye: (
       <RiEyeCloseLine
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -221,6 +237,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     configuration: (
       <HiOutlineCog8Tooth
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -228,6 +245,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     key: (
       <GrKey
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -235,6 +253,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     group: (
       <GrGroup
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -242,6 +261,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     admUser: (
       <HiOutlineUser
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -249,6 +269,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     search: (
       <AiOutlineSearch
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -256,6 +277,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     add: (
       <BiAddToQueue
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -263,6 +285,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     edit: (
       <FiEdit
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -270,6 +293,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     trash: (
       <BsFillTrash3Fill
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -277,6 +301,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     drag: (
       <MdOutlineDragHandle
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -284,6 +309,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     aproveDocument: (
       <GrDocumentVerified
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -291,6 +317,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     configTerms: (
       <FaStackExchange
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}
@@ -298,6 +325,7 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
     ),
     address: (
       <FaRegAddressCard
+        data-cy={`icons-${icon}`}
         style={colorCheckStyle()}
         className={classNameCheck()}
         onClick={() => action()}

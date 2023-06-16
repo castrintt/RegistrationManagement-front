@@ -68,7 +68,7 @@ const Register = () => {
       dispatch(createUser(userConstructor(data)) as any).then(
         ({ payload }: { payload: boolean }) => {
           if (payload) {
-            navigate("/login");
+            navigate("/client/login");
           }
         }
       );
@@ -189,7 +189,7 @@ const Register = () => {
             <div className={styles.buttons_container}>
               <Buttons
                 onClickMethod={() => {
-                  navigate("/login");
+                  navigate("/client/login");
                 }}
                 buttonText={"cancelar"}
                 variant={"edit"}

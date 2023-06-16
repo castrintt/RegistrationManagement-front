@@ -6,34 +6,62 @@ import * as LAZY_ROUTES from "./LazyRoutes";
 import ProtectedRoute from "./ProtectedRoute";
 import { useAppSelector } from "../Store/Store";
 import Loading from "../Components/Loading/Loading";
+import { ClientDataRoutes } from "./ClientPaths";
 
 const RoutesApp = () => {
   const { isLoading } = useAppSelector((state) => state.loading);
+
   return (
     <React.Fragment>
       <Loading isLoading={isLoading} />
       <Suspense fallback={<Loading isLoading={true} />}>
         <Routes>
           {/* UNAUTHORIZE */}
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/client/login" />} />
           {/* PUBLIC */}
-          <Route path="/register" element={<LAZY_ROUTES.Register />} />
-          <Route path="/login" element={<LAZY_ROUTES.LoginClient />} />
+          <Route
+            path="/client/register"
+            element={<LAZY_ROUTES.Client.Register />}
+          />
+          <Route path="/client/login" element={<LAZY_ROUTES.Client.Login />} />
 
           {/* AUTHORIZED ADM */}
 
-          {/* AUTHORIZED CLIENT */}
+          {/* AUTHORIZED CLIENT  */}
 
-          {/* AUTHORIZED CLIENT EXEMPLE */}
-
+          {/* HOME */}
           <Route
             path="/client/home"
             element={
               <ProtectedRoute>
-                <LAZY_ROUTES.HomeClient />
+                <LAZY_ROUTES.Client.Home />
               </ProtectedRoute>
             }
           />
+          {/* USER DATA */}
+          {ClientDataRoutes.map((values: { path: string }, index: number) => (
+            <React.Fragment key={index}>
+              <Route
+                path={values.path}
+                element={
+                  <ProtectedRoute>
+                    <LAZY_ROUTES.Client.User />
+                  </ProtectedRoute>
+                }
+              />
+            </React.Fragment>
+          ))}
+          {/* APPLICATIONS */}
+          <Route
+            path="/client/application"
+            element={
+              <ProtectedRoute>
+                <LAZY_ROUTES.Client.Application />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* UNAUTHORIZE + NOTFOUND */}
 
           <Route path="unauthorize" element={<LAZY_ROUTES.Unauthorize />} />
           <Route path="not-found" element={<LAZY_ROUTES.NotFound />} />

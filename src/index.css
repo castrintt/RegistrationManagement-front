@@ -26,6 +26,10 @@ html {
   /* 2 */
 }
 
+svg {
+  cursor: pointer;
+}
+
 input[type='text'],
 input[type='password'],
 input[type='email'],

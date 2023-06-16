@@ -81,7 +81,7 @@ const Login = () => {
             width={`100%`}
           />
           <span>
-            Não possui uma conta? <Link to="/register">clique aqui</Link>
+            Não possui uma conta? <Link to="/client/register">clique aqui</Link>
           </span>
         </form>
       </div>

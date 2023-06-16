@@ -3,40 +3,43 @@
 import React from "react";
 import styles from "./Base.module.css";
 import Icons, { IconsProps } from "../Icons/Icons";
-import { useState } from "react";
+import WhiteLabelImage from "../../Assets/white-label.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type Props = {
   sidebarIcons: IconsProps[];
-  isOpen: boolean;
 };
 
 const Base = ({ sidebarIcons }: Props) => {
-  const iconsSize = "4rem";
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const openOrCLoseSideBar = () => {
-    setIsOpen(!isOpen);
-  };
+  const iconsSize = "1.7rem";
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
-    <div className={isOpen ? styles.container_open : styles.container_closed}>
-      <div className={styles.image_container}></div>
-      <div className={styles.main_icons}>
-        <Icons
-          icon={"home"}
-          color={"white"}
-          size={iconsSize}
-          action={openOrCLoseSideBar}
-          isActive={false}
+    <div className={styles.container}>
+      <div className={styles.image_container}>
+        <img
+          data-cy="logo-image"
+          src={WhiteLabelImage}
+          alt="enterprise image"
+          onClick={() => {
+            pathname.includes("/client")
+              ? navigate("/client/home")
+              : navigate("/adm/home");
+          }}
         />
-        {sidebarIcons.map((values: IconsProps) => (
-          <Icons
-            icon={values.icon}
-            color={"white"}
-            size={iconsSize}
-            action={values.action}
-            isActive={values.isActive}
-          />
+      </div>
+      <div className={styles.main_icons}>
+        {sidebarIcons.map((values: IconsProps, index: number) => (
+          <React.Fragment key={index}>
+            <Icons
+              icon={values.icon}
+              color={"white"}
+              size={iconsSize}
+              action={values.action}
+              isActive={values.isActive}
+            />
+          </React.Fragment>
         ))}
       </div>
       <div className={styles.logout}>
@@ -44,7 +47,11 @@ const Base = ({ sidebarIcons }: Props) => {
           icon={"logout"}
           color={"white"}
           size={iconsSize}
-          action={() => {}}
+          action={() => {
+            pathname.includes("/client")
+              ? navigate("/client/login")
+              : navigate("/adm/login");
+          }}
           isActive={false}
         />
       </div>
