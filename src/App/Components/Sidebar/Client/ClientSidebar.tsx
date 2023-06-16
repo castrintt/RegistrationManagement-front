@@ -11,23 +11,35 @@ const ClientSidebar = () => {
         {
           icon: "home",
           color: "white",
-          size: "4rem",
+          size: "0",
           action: () => navigate("/client/home"),
           isActive: pathname.includes("/client/home"),
+          tooltip: {
+            title: "Home",
+            position: "right",
+          },
         },
         {
           icon: "user",
           color: "white",
-          size: "4rem",
+          size: "0",
           action: () => navigate("/client/user"),
           isActive: pathname.includes("/client/user"),
+          tooltip: {
+            title: "Minha conta",
+            position: "right",
+          },
         },
         {
           icon: "dashboard",
           color: "white",
-          size: "4rem",
+          size: "0",
           action: () => navigate("/client/application"),
           isActive: pathname.includes("/client/application"),
+          tooltip: {
+            title: "Aplicações",
+            position: "right",
+          },
         },
       ]}
     />

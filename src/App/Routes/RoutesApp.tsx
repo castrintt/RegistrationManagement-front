@@ -6,7 +6,7 @@ import * as LAZY_ROUTES from "./LazyRoutes";
 import ProtectedRoute from "./ProtectedRoute";
 import { useAppSelector } from "../Store/Store";
 import Loading from "../Components/Loading/Loading";
-import { ClientDataRoutes } from "./ClientPaths";
+import { ClientDataPaths } from "./ClientDataPaths";
 
 const RoutesApp = () => {
   const { isLoading } = useAppSelector((state) => state.loading);
@@ -27,9 +27,7 @@ const RoutesApp = () => {
 
           {/* AUTHORIZED ADM */}
 
-          {/* AUTHORIZED CLIENT  */}
-
-          {/* HOME */}
+          {/* AUTHORIZED CLIENT - home */}
           <Route
             path="/client/home"
             element={
@@ -38,8 +36,8 @@ const RoutesApp = () => {
               </ProtectedRoute>
             }
           />
-          {/* USER DATA */}
-          {ClientDataRoutes.map((values: { path: string }, index: number) => (
+          {/*  AUTHORIZED CLIENT - user data */}
+          {ClientDataPaths.map((values: { path: string }, index: number) => (
             <React.Fragment key={index}>
               <Route
                 path={values.path}
@@ -51,7 +49,7 @@ const RoutesApp = () => {
               />
             </React.Fragment>
           ))}
-          {/* APPLICATIONS */}
+          {/* AUTHORIZED CLIENT - application */}
           <Route
             path="/client/application"
             element={
@@ -60,9 +58,7 @@ const RoutesApp = () => {
               </ProtectedRoute>
             }
           />
-
           {/* UNAUTHORIZE + NOTFOUND */}
-
           <Route path="unauthorize" element={<LAZY_ROUTES.Unauthorize />} />
           <Route path="not-found" element={<LAZY_ROUTES.NotFound />} />
         </Routes>

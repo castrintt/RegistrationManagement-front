@@ -38,6 +38,7 @@ const Base = ({ sidebarIcons }: Props) => {
               size={iconsSize}
               action={values.action}
               isActive={values.isActive}
+              tooltip={values.tooltip}
             />
           </React.Fragment>
         ))}
@@ -53,6 +54,23 @@ const Base = ({ sidebarIcons }: Props) => {
               : navigate("/adm/login");
           }}
           isActive={false}
+          tooltip={{
+            title: "Logout",
+            position: "right",
+          }}
+        />
+      </div>
+      <div className={styles.drop_down}>
+        <Icons
+          icon={"hamburger"}
+          color={"white"}
+          size={iconsSize}
+          action={() => {}}
+          isActive={false}
+          tooltip={{
+            title: "Menu",
+            position: "bottom",
+          }}
         />
       </div>
     </div>

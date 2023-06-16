@@ -1,4 +1,4 @@
-export const ClientDataRoutes = [
+export const ClientDataPaths = [
   {
     path: "/client/user",
   },

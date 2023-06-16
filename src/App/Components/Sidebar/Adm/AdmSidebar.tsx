@@ -1,44 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
 import Base from "../Base";
-import { IconName } from "../../Icons/Icons";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AdmSidebar = () => {
-  const [selectedIcon, setSelectedIcon] = useState<IconName>("home");
-
-  const selectIcon = (icon: IconName) => {
-    setSelectedIcon(icon);
-  };
-
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   return (
     <Base
       sidebarIcons={[
         {
           icon: "home",
           color: "white",
-          size: "4rem",
-          action: () => selectIcon("home"),
-          isActive: selectedIcon === "home",
+          size: "0",
+          action: () => navigate("/adm/home"),
+          isActive: pathname.includes("/adm/home"),
+          tooltip: {
+            title: "Home",
+            position: "right",
+          },
         },
         {
           icon: "user",
           color: "white",
-          size: "4rem",
-          action: () => selectIcon("user"),
-          isActive: selectedIcon === "user",
+          size: "0",
+          action: () => navigate("/adm/user"),
+          isActive: pathname.includes("/adm/user"),
+          tooltip: {
+            title: "Minha conta",
+            position: "right",
+          },
         },
         {
           icon: "configuration",
           color: "white",
-          size: "4rem",
-          action: () => selectIcon("configuration"),
-          isActive: selectedIcon === "configuration",
+          size: "0",
+          action: () => navigate("/adm/configuration"),
+          isActive: pathname.includes("/adm/configuration"),
+          tooltip: {
+            title: "Configurações",
+            position: "right",
+          },
         },
         {
           icon: "key",
           color: "white",
-          size: "4rem",
-          action: () => selectIcon("key"),
-          isActive: selectedIcon === "key",
+          size: "0",
+          action: () => navigate("/adm/permissions"),
+          isActive: pathname.includes("/adm/permissions"),
+          tooltip: {
+            title: "Permissões",
+            position: "right",
+          },
         },
       ]}
     />

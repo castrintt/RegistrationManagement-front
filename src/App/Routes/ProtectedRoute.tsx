@@ -10,7 +10,6 @@ const isAuthenticated = () => {
   const authService = new AuthService();
   return authService.checkAuthentication();
 };
-console.log(isAuthenticated());
 
 const ProtectedRoute = ({ children }: Props) => {
   return isAuthenticated() ? children : <Navigate to="unauthorize" />;

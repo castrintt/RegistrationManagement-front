@@ -11,20 +11,22 @@ import { BsFillTrash3Fill } from "react-icons/bs";
 import { FaRegAddressCard, FaStackExchange } from "react-icons/fa";
 import { FiEdit, FiFilter } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrDocumentVerified, GrGroup, GrKey } from "react-icons/gr";
+import { GrDocumentVerified, GrGroup } from "react-icons/gr";
 import { HiOutlineExclamation, HiOutlineUser } from "react-icons/hi";
 import {
   HiOutlineChatBubbleLeftEllipsis,
   HiOutlineCog8Tooth,
 } from "react-icons/hi2";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { IoWarningOutline } from "react-icons/io5";
+import { IoWarningOutline, IoKeyOutline } from "react-icons/io5";
 import { MdOutlineDragHandle, MdPendingActions } from "react-icons/md";
 import { RiCloseCircleFill, RiEyeCloseLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
 import { SiAdguard } from "react-icons/si";
 import { SlLogout } from "react-icons/sl";
 import styles from "./Icons.module.css";
+import React from "react";
+import TooltipComponent from "../Tooltip/Tooltip";
 
 export type Colors =
   | "red"
@@ -72,9 +74,17 @@ export type IconsProps = {
   size: string;
   action: Function;
   isActive: boolean;
+  tooltip: { title: string; position: "left" | "right" | "top" | "bottom" };
 };
 
-const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
+const Icons = ({
+  icon,
+  color,
+  size,
+  action,
+  isActive,
+  tooltip,
+}: IconsProps) => {
   const allColors = {
     red: "#D22929",
     green: "#62C132",
@@ -108,227 +118,395 @@ const Icons = ({ icon, color, size, action, isActive }: IconsProps) => {
 
   const selectedIcon = {
     pending: (
-      <MdPendingActions
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <MdPendingActions
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     home: (
-      <AiOutlineHome
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <AiOutlineHome
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     user: (
-      <AiOutlineUser
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <AiOutlineUser
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     dashboard: (
-      <RxDashboard
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <RxDashboard
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     logout: (
-      <SlLogout
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <SlLogout
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     hamburger: (
-      <GiHamburgerMenu
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <GiHamburgerMenu
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     notification: (
-      <IoIosNotificationsOutline
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <IoIosNotificationsOutline
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     terms: (
-      <SiAdguard
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <SiAdguard
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     filter: (
-      <FiFilter
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <FiFilter
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     inService: (
-      <HiOutlineChatBubbleLeftEllipsis
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <HiOutlineChatBubbleLeftEllipsis
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     exclamation: (
-      <HiOutlineExclamation
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <HiOutlineExclamation
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     warning: (
-      <IoWarningOutline
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <IoWarningOutline
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     closed: (
-      <RiCloseCircleFill
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <RiCloseCircleFill
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     cutEye: (
-      <AiOutlineEyeInvisible
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <AiOutlineEyeInvisible
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     openEye: (
-      <AiOutlineEye
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <AiOutlineEye
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     closedEye: (
-      <RiEyeCloseLine
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <RiEyeCloseLine
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     configuration: (
-      <HiOutlineCog8Tooth
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <HiOutlineCog8Tooth
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     key: (
-      <GrKey
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <IoKeyOutline
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     group: (
-      <GrGroup
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <GrGroup
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     admUser: (
-      <HiOutlineUser
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <HiOutlineUser
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     search: (
-      <AiOutlineSearch
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <AiOutlineSearch
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     add: (
-      <BiAddToQueue
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <BiAddToQueue
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     edit: (
-      <FiEdit
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <FiEdit
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     trash: (
-      <BsFillTrash3Fill
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <BsFillTrash3Fill
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     drag: (
-      <MdOutlineDragHandle
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <MdOutlineDragHandle
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     aproveDocument: (
-      <GrDocumentVerified
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <GrDocumentVerified
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     configTerms: (
-      <FaStackExchange
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <FaStackExchange
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
     address: (
-      <FaRegAddressCard
-        data-cy={`icons-${icon}`}
-        style={colorCheckStyle()}
-        className={classNameCheck()}
-        onClick={() => action()}
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <FaRegAddressCard
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
       />
     ),
   };
