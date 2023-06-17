@@ -18,7 +18,11 @@ import {
   HiOutlineCog8Tooth,
 } from "react-icons/hi2";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { IoWarningOutline, IoKeyOutline } from "react-icons/io5";
+import {
+  IoWarningOutline,
+  IoKeyOutline,
+  IoDocumentsOutline,
+} from "react-icons/io5";
 import { MdOutlineDragHandle, MdPendingActions } from "react-icons/md";
 import { RiCloseCircleFill, RiEyeCloseLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
@@ -65,6 +69,7 @@ export type IconName =
   | "trash"
   | "drag"
   | "aproveDocument"
+  | "documents"
   | "configTerms"
   | "address";
 
@@ -501,6 +506,20 @@ const Icons = ({
         position={tooltip.position}
         children={
           <FaRegAddressCard
+            data-cy={`icons-${icon}`}
+            style={colorCheckStyle()}
+            className={classNameCheck()}
+            onClick={() => action()}
+          />
+        }
+      />
+    ),
+    documents: (
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <IoDocumentsOutline
             data-cy={`icons-${icon}`}
             style={colorCheckStyle()}
             className={classNameCheck()}

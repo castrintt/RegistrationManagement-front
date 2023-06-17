@@ -1,22 +1,40 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/ban-types */
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Base.module.css";
 import Icons, { IconsProps } from "../Icons/Icons";
 import WhiteLabelImage from "../../Assets/white-label.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LogoutService } from "./../../../../business/service/client/Logout.service";
+
+type ResponsiveProps = {
+  name: string;
+  redirectPath: string;
+  isActive: boolean;
+};
 
 type Props = {
   sidebarIcons: IconsProps[];
+  responsiveDescription: ResponsiveProps[];
 };
 
-const Base = ({ sidebarIcons }: Props) => {
+const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
   const iconsSize = "1.7rem";
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [dropDownIsOpen, setDropDownIsOpen] = useState<boolean>(false);
+  const logoutService = new LogoutService();
+
+  const logout = () => {
+    logoutService.logout();
+    if (pathname.includes("/client")) {
+      return navigate("/client/login");
+    }
+    return navigate("/adm/login");
+  };
 
   return (
-    <div className={styles.container}>
+    <aside className={styles.container}>
       <div className={styles.image_container}>
         <img
           data-cy="logo-image"
@@ -48,11 +66,7 @@ const Base = ({ sidebarIcons }: Props) => {
           icon={"logout"}
           color={"white"}
           size={iconsSize}
-          action={() => {
-            pathname.includes("/client")
-              ? navigate("/client/login")
-              : navigate("/adm/login");
-          }}
+          action={() => logout()}
           isActive={false}
           tooltip={{
             title: "Logout",
@@ -65,7 +79,7 @@ const Base = ({ sidebarIcons }: Props) => {
           icon={"hamburger"}
           color={"white"}
           size={iconsSize}
-          action={() => {}}
+          action={() => setDropDownIsOpen(!dropDownIsOpen)}
           isActive={false}
           tooltip={{
             title: "Menu",
@@ -73,7 +87,22 @@ const Base = ({ sidebarIcons }: Props) => {
           }}
         />
       </div>
-    </div>
+      {dropDownIsOpen && (
+        <div className={styles.drop_down_items}>
+          {responsiveDescription.map(
+            (values: ResponsiveProps, index: number) => (
+              <span
+                key={index}
+                onClick={() => navigate(values.redirectPath)}
+                className={values.isActive ? styles.selected : ""}
+              >
+                {values.name}
+              </span>
+            )
+          )}
+        </div>
+      )}
+    </aside>
   );
 };
 

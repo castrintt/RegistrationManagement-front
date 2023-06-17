@@ -12,9 +12,6 @@ export const ClientDataPaths = [
     path: "/client/user/address/:id",
   },
   {
-    path: "/client/user/documents",
-  },
-  {
     path: "/client/notifications",
   },
   {

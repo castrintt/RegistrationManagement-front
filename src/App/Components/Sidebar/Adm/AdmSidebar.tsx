@@ -53,6 +53,28 @@ const AdmSidebar = () => {
           },
         },
       ]}
+      responsiveDescription={[
+        {
+          name: "Home",
+          redirectPath: "/adm/home",
+          isActive: pathname.includes("/adm/home"),
+        },
+        {
+          name: "Minha conta",
+          redirectPath: "/adm/user",
+          isActive: pathname.includes("/adm/user"),
+        },
+        {
+          name: "Configurações",
+          redirectPath: "/adm/configuration",
+          isActive: pathname.includes("/adm/configuration"),
+        },
+        {
+          name: "Permissões",
+          redirectPath: "/adm/permissions",
+          isActive: pathname.includes("/adm/permissions"),
+        },
+      ]}
     />
   );
 };

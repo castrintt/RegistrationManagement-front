@@ -1,8 +1,7 @@
 import { ILogoutService } from "./interfaces/ILogout";
 
 export class LogoutService implements ILogoutService {
-  logout(): string {
+  logout(): void {
     localStorage.removeItem("encryptClient");
-    return "/login";
   }
 }

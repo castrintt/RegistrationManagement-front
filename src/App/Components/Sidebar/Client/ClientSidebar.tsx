@@ -31,6 +31,17 @@ const ClientSidebar = () => {
           },
         },
         {
+          icon: "documents",
+          color: "white",
+          size: "0",
+          action: () => navigate("/client/documents"),
+          isActive: pathname.includes("/client/documents"),
+          tooltip: {
+            title: "Documents",
+            position: "right",
+          },
+        },
+        {
           icon: "dashboard",
           color: "white",
           size: "0",
@@ -40,6 +51,28 @@ const ClientSidebar = () => {
             title: "Aplicações",
             position: "right",
           },
+        },
+      ]}
+      responsiveDescription={[
+        {
+          name: "Home",
+          redirectPath: "/client/home",
+          isActive: pathname.includes("/client/home"),
+        },
+        {
+          name: "Minha conta",
+          redirectPath: "/client/user",
+          isActive: pathname.includes("/client/user"),
+        },
+        {
+          name: "Documentos",
+          redirectPath: "/client/documents",
+          isActive: pathname.includes("/client/documents"),
+        },
+        {
+          name: "Aplicações",
+          redirectPath: "/client/application",
+          isActive: pathname.includes("/client/application"),
         },
       ]}
     />

@@ -10,6 +10,7 @@ const Client = {
   Login: lazy(() => import("../Pages/Client/Login/Login")),
   Home: lazy(() => import("../Pages/Client/Home/Home")),
   User: lazy(() => import("../Pages/Client/User/User")),
+  Documents: lazy(() => import("../Pages/Client/Documents/Documents")),
   Application: lazy(() => import("../Pages/Client/Application/Application")),
 };
 

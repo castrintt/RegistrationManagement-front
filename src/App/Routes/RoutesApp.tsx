@@ -17,7 +17,8 @@ const RoutesApp = () => {
       <Suspense fallback={<Loading isLoading={true} />}>
         <Routes>
           {/* UNAUTHORIZE */}
-          <Route path="*" element={<Navigate to="/client/login" />} />
+          <Route path="*" element={<Navigate to="/unauthorize" />} />
+
           {/* PUBLIC */}
           <Route
             path="/client/register"
@@ -58,6 +59,16 @@ const RoutesApp = () => {
               </ProtectedRoute>
             }
           />
+          {/* AUTHORIZED CLIENT - documents */}
+          <Route
+            path="/client/documents"
+            element={
+              <ProtectedRoute>
+                <LAZY_ROUTES.Client.Documents />
+              </ProtectedRoute>
+            }
+          />
+
           {/* UNAUTHORIZE + NOTFOUND */}
           <Route path="unauthorize" element={<LAZY_ROUTES.Unauthorize />} />
           <Route path="not-found" element={<LAZY_ROUTES.NotFound />} />
