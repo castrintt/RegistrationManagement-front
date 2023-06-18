@@ -13,9 +13,9 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({
   position,
   children,
 }) => (
-    <Tooltip title={title} position={position} trigger="mouseenter">
-        {children}
-    </Tooltip>
+  <Tooltip title={title} position={position} trigger="mouseenter">
+    {children}
+  </Tooltip>
 );
 
 export default TooltipComponent;

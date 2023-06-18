@@ -1,12 +1,15 @@
 import React from "react";
 import styles from "./Application.module.css";
 import ClientSidebar from "../../../Components/Sidebar/Client/ClientSidebar";
+import commonStyles from "../../../styles/CommonSidebarWithComponent.module.css";
 
 const Application = () => {
   return (
-    <div className={styles.container}>
+    <div className={commonStyles.container}>
       <ClientSidebar />
-      <div className={styles.main_content}>
+      <div
+        className={`${commonStyles.main_content} ${styles.application_main_content}`}
+      >
         <h1>Application</h1>
       </div>
     </div>

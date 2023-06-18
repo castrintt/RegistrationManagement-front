@@ -27,10 +27,9 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
 
   const logout = () => {
     logoutService.logout();
-    if (pathname.includes("/client")) {
-      return navigate("/client/login");
-    }
-    return navigate("/adm/login");
+    return pathname.includes("/client")
+      ? navigate("/client/login")
+      : navigate("/adm/login");
   };
 
   return (
@@ -100,6 +99,7 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
               </span>
             )
           )}
+          <span onClick={() => logout()}>Logout</span>
         </div>
       )}
     </aside>

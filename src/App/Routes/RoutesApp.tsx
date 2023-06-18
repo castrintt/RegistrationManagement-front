@@ -17,7 +17,7 @@ const RoutesApp = () => {
       <Suspense fallback={<Loading isLoading={true} />}>
         <Routes>
           {/* UNAUTHORIZE */}
-          <Route path="*" element={<Navigate to="/unauthorize" />} />
+          <Route path="*" element={<Navigate to="/client/login" />} />
 
           {/* PUBLIC */}
           <Route

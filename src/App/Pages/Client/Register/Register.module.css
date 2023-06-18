@@ -1,7 +1,7 @@
 .container {
     width: 100vw;
     height: 100vh;
-    background-image: url('src/App/Assets/img/consumidor_back_login.jpg');
+    background-image: url('../../../Assets/img/consumidor_back_login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -132,8 +132,9 @@ label:nth-of-type(5) {
     color: var(--light-blue);
     font-weight: 550;
     font-size: .9em;
-    letter-spacing:.1rem;
+    letter-spacing: .1rem;
 }
+
 .terms_policies_container>span {
     cursor: pointer;
 }
