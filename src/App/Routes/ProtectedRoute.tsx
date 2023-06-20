@@ -12,7 +12,7 @@ const isAuthenticated = () => {
 };
 
 const ProtectedRoute = ({ children }: Props) => {
-  return isAuthenticated() ? children : <Navigate to="unauthorize" />;
+  return isAuthenticated() ? children : <Navigate to="/unauthorize" />;
 };
 
 export default ProtectedRoute;

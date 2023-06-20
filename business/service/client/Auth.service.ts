@@ -4,9 +4,16 @@ import { AuthUserRequest } from "../../domain/entities/request/client/authUser/A
 import { RefreshTokenRequest } from "../../domain/entities/request/client/refreshToken/RefreshTokenRequest";
 import { AuthUserResponse } from "../../domain/entities/response/client/authUser/AuthUserResponse";
 import { RefreshTokenResponse } from "../../domain/entities/response/client/refreshToken/RefreshTokenResponse";
-import { httpPrivate, httpPublic } from "../../../config/axios";
+import { httpPrivate, httpPublic } from "../../../config/axiosInstances";
 import { callToast } from "../../../utils/toastCall";
 
+type LocalStorageSetter = {
+  message: string;
+  accessToken: string;
+  refreshToken: string;
+  expiry: number;
+  loginAttempt: Date;
+};
 export class AuthService implements IAuthService {
   private _httpPublic = httpPublic;
 
@@ -22,15 +29,8 @@ export class AuthService implements IAuthService {
     httpPrivate.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }
 
-  setUserLocalStorageAccess(userResponse: {
-    message: string;
-    accessToken: string;
-    refreshToken: string;
-    expiry: number;
-    saveAccount: boolean;
-  }): void {
+  setUserLocalStorageAccess(userResponse: LocalStorageSetter): void {
     localStorage.setItem("encryptClient", encryptData(userResponse));
-    this.setDefaultHeaderAuthorizationConfiguration(userResponse.accessToken);
   }
 
   async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
@@ -43,13 +43,17 @@ export class AuthService implements IAuthService {
         if (response.status === 200 && response.data) {
           this.setUserLocalStorageAccess({
             ...response.data,
-            saveAccount: user.saveLogin,
+            loginAttempt: new Date(),
           });
           this.setDefaultHeaderAuthorizationConfiguration(
             response.data.accessToken
           );
           const message = response.data.message;
-          callToast(message, "success");
+          if (message.includes("autenticado com sucesso")) {
+            callToast(message, "success");
+          } else {
+            callToast(message, "error");
+          }
           return response.data;
         }
         return null;
@@ -70,7 +74,10 @@ export class AuthService implements IAuthService {
       .post("/Authentication/update_acess_token", access)
       .then((response) => {
         if (response.status === 200 && response.data) {
-          this.setUserLocalStorageAccess(response.data);
+          this.setUserLocalStorageAccess({
+            ...response.data,
+            loginAttempt: new Date(),
+          });
           return response.data;
         }
         return null;

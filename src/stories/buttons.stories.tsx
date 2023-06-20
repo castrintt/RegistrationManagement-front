@@ -36,6 +36,7 @@ DefaultEdit.args = {
   variant: "edit",
   width: "10rem",
 };
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...DefaultEdit.args,

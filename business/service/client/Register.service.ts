@@ -1,7 +1,7 @@
 import { Policies } from "../../domain/entities/response/client/policies/policies";
 import { Terms } from "../../domain/entities/response/client/terms/terms";
 import { IRegisterService } from "./interfaces/IRegister";
-import { httpPublic } from "../../../config/axios";
+import { httpPublic } from "../../../config/axiosInstances";
 import { CreateUserRequest } from "../../domain/entities/request/client/registerUser/CreateUserRequest";
 import { callToast } from "../../../utils/toastCall";
 import { AxiosInstance } from "axios";

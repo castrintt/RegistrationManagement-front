@@ -18,6 +18,15 @@ type FormValues = {
   saveAccount: boolean;
 };
 
+type PayloadResponse = {
+  payload: {
+    accessToken: string;
+    expiry: number;
+    message: string;
+    refreshToken: string;
+  };
+};
+
 const Login = () => {
   const { register, handleSubmit } = useForm<FormValues>();
   const dispatch = useDispatch();
@@ -31,8 +40,8 @@ const Login = () => {
         password: data.password,
         saveLogin: data.saveAccount,
       }) as any
-    ).then(({ payload }: { payload: boolean }) => {
-      if (payload) {
+    ).then(({ payload }: PayloadResponse) => {
+      if (payload.message.includes("autenticado com sucesso")) {
         navigate("/client/home");
       }
     });

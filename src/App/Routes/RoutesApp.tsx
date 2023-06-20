@@ -10,7 +10,6 @@ import { ClientDataPaths } from "./ClientDataPaths";
 
 const RoutesApp = () => {
   const { isLoading } = useAppSelector((state) => state.loading);
-
   return (
     <React.Fragment>
       <Loading isLoading={isLoading} />
