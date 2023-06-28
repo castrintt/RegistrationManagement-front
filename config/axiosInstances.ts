@@ -1,22 +1,18 @@
-import axios from "axios";
 import * as AXIOS_HELPERS from "./axiosHelpers";
+import { AxiosBuilder } from "./builder";
 import { AuthService } from "../business/service/client/Auth.service";
 import { LogoutService } from "../business/service/client/Logout.service";
 
-const httpPublic = axios.create({
-  baseURL: AXIOS_HELPERS.getEnvironmentUrl(),
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const httpPublic = AxiosBuilder.create()
+  .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+  .toDomain()
+  .initInstance();
 
-const httpPrivate = axios.create({
-  baseURL: AXIOS_HELPERS.getEnvironmentUrl(),
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
-});
+const httpPrivate = AxiosBuilder.create()
+  .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+  .haveCredentials()
+  .toDomain()
+  .initInstance();
 
 httpPrivate.interceptors.request.use(async (config) => {
   if (AXIOS_HELPERS.conditionToValidateTimeThatUserIsLogged()) {
@@ -39,6 +35,7 @@ httpPrivate.interceptors.request.use(async (config) => {
 
 httpPrivate.interceptors.response.use(
   (response) => {
+    console.log("response called", response);
     return response;
   },
   (error) => {

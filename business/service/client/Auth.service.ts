@@ -33,7 +33,7 @@ export class AuthService implements IAuthService {
     localStorage.setItem("encryptClient", encryptData(userResponse));
   }
 
-  async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
+   async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
     return await this._httpPublic
       .post("/Authentication/generate_access_token", {
         login: user.login,
