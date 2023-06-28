@@ -47,8 +47,8 @@ export class AxiosBuilder {
     this.url = url;
     return this;
   }
-  withHeaders(url: string) {
-    this.url = url;
+  withHeaders(headers: HeadersType) {
+    this.headers = headers;
     return this;
   }
 

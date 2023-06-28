@@ -3,47 +3,52 @@ import { AxiosBuilder } from "./builder";
 import { AuthService } from "../business/service/client/Auth.service";
 import { LogoutService } from "../business/service/client/Logout.service";
 
-const httpPublic = AxiosBuilder.create()
-  .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
-  .toDomain()
-  .initInstance();
+const axiosInstances = {
+  public: AxiosBuilder.create()
+    .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+    .toDomain()
+    .initInstance(),
+  private: AxiosBuilder.create()
+    .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+    .haveCredentials()
+    .toDomain()
+    .initInstance(),
+  privateForFile: AxiosBuilder.create()
+    .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+    .withHeaders({
+      "Content-Type": "multipart/form-data",
+    })
+    .haveCredentials()
+    .toDomain()
+    .initInstance(),
+};
 
-const httpPrivate = AxiosBuilder.create()
-  .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
-  .haveCredentials()
-  .toDomain()
-  .initInstance();
+type MappedInstances = keyof typeof axiosInstances;
 
-httpPrivate.interceptors.request.use(async (config) => {
-  if (AXIOS_HELPERS.conditionToValidateTimeThatUserIsLogged()) {
-    try {
-      const authService = new AuthService();
-      await authService.refreshToken(AXIOS_HELPERS.localStorageAccessToken());
-      const token = AXIOS_HELPERS.localStorageBearerToken();
-      config.headers.Authorization = token;
-    } catch (err) {
-      console.log("Error", err);
+const createRequestInterceptorForAuthentication = (
+  instance: MappedInstances
+) => {
+  return axiosInstances[instance].interceptors.request.use(async (config) => {
+    if (AXIOS_HELPERS.conditionToValidateTimeThatUserIsLogged()) {
+      try {
+        const authService = new AuthService();
+        await authService.refreshToken(AXIOS_HELPERS.localStorageAccessToken());
+        const token = AXIOS_HELPERS.localStorageBearerToken();
+        config.headers.Authorization = token;
+      } catch (err) {
+        console.log("Error", err);
+      }
+      return config;
+    } else {
+      const logoutServices = new LogoutService();
+      logoutServices.logout();
+      config.headers.Authorization = "";
+      return config;
     }
-    return config;
-  } else {
-    const logoutServices = new LogoutService();
-    logoutServices.logout();
-    config.headers.Authorization = "";
-    return config;
-  }
-});
+  });
+};
 
-httpPrivate.interceptors.response.use(
-  (response) => {
-    console.log("response called", response);
-    return response;
-  },
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      //
-    }
-    return Promise.reject(error);
-  }
-);
+createRequestInterceptorForAuthentication("private");
+createRequestInterceptorForAuthentication("privateForFile");
 
-export { httpPublic, httpPrivate };
+export { axiosInstances };

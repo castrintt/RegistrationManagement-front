@@ -4,7 +4,7 @@ import { AuthUserRequest } from "../../domain/entities/request/client/authUser/A
 import { RefreshTokenRequest } from "../../domain/entities/request/client/refreshToken/RefreshTokenRequest";
 import { AuthUserResponse } from "../../domain/entities/response/client/authUser/AuthUserResponse";
 import { RefreshTokenResponse } from "../../domain/entities/response/client/refreshToken/RefreshTokenResponse";
-import { httpPrivate, httpPublic } from "../../../config/axiosInstances";
+import { axiosInstances } from "../../../config/axiosInstances";
 import { callToast } from "../../../utils/toastCall";
 
 type LocalStorageSetter = {
@@ -15,7 +15,7 @@ type LocalStorageSetter = {
   loginAttempt: Date;
 };
 export class AuthService implements IAuthService {
-  private _httpPublic = httpPublic;
+  private _httpPublic = axiosInstances.public;
 
   checkAuthentication(): boolean {
     const localToken = localStorage.getItem("encryptClient");
@@ -26,14 +26,14 @@ export class AuthService implements IAuthService {
   }
 
   setDefaultHeaderAuthorizationConfiguration(accessToken: string): void {
-    httpPrivate.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    axiosInstances.private.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }
 
   setUserLocalStorageAccess(userResponse: LocalStorageSetter): void {
     localStorage.setItem("encryptClient", encryptData(userResponse));
   }
 
-   async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
+  async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
     return await this._httpPublic
       .post("/Authentication/generate_access_token", {
         login: user.login,
