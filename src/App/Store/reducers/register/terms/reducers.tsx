@@ -10,7 +10,7 @@ export type InitialState = {
 
 const initialState: InitialState = {
   data: {
-    policyDescription: "",
+    termsDescription: "",
     editorSettings: null,
     publishedDate: new Date(),
   },

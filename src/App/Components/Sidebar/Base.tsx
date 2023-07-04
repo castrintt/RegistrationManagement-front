@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/ban-types */
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Base.module.css";
 import Icons, { IconsProps } from "../Icons/Icons";
 import WhiteLabelImage from "../../Assets/white-label.png";
-import { useLocation, useNavigate } from "react-router-dom";
-import { LogoutService } from "./../../../../business/service/client/Logout.service";
+import UseBaseController from "./Base.controller";
 
 type ResponsiveProps = {
   name: string;
@@ -19,19 +18,7 @@ type Props = {
 };
 
 const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
-  const iconsSize = "1.7rem";
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const [dropDownIsOpen, setDropDownIsOpen] = useState<boolean>(false);
-  const logoutService = new LogoutService();
-
-  const logout = () => {
-    logoutService.logout();
-    return pathname.includes("/client")
-      ? navigate("/client/login")
-      : navigate("/adm/login");
-  };
-
+  const { Actions, States } = UseBaseController();
   return (
     <aside className={styles.container}>
       <div className={styles.image_container}>
@@ -39,11 +26,7 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
           data-cy="logo-image"
           src={WhiteLabelImage}
           alt="enterprise image"
-          onClick={() => {
-            pathname.includes("/client")
-              ? navigate("/client/home")
-              : navigate("/adm/home");
-          }}
+          onClick={Actions.onLogoClick}
         />
       </div>
       <div className={styles.main_icons}>
@@ -52,7 +35,7 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
             <Icons
               icon={values.icon}
               color={"white"}
-              size={iconsSize}
+              size={States.iconsSize}
               action={values.action}
               isActive={values.isActive}
               tooltip={values.tooltip}
@@ -64,8 +47,8 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
         <Icons
           icon={"logout"}
           color={"white"}
-          size={iconsSize}
-          action={() => logout()}
+          size={States.iconsSize}
+          action={Actions.onLogout}
           isActive={false}
           tooltip={{
             title: "Logout",
@@ -77,8 +60,8 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
         <Icons
           icon={"hamburger"}
           color={"white"}
-          size={iconsSize}
-          action={() => setDropDownIsOpen(!dropDownIsOpen)}
+          size={States.iconsSize}
+          action={Actions.onCloseOrOpenDropDown}
           isActive={false}
           tooltip={{
             title: "Menu",
@@ -86,20 +69,20 @@ const Base = ({ sidebarIcons, responsiveDescription }: Props) => {
           }}
         />
       </div>
-      {dropDownIsOpen && (
+      {States.dropDownIsOpen && (
         <div className={styles.drop_down_items}>
           {responsiveDescription.map(
             (values: ResponsiveProps, index: number) => (
               <span
                 key={index}
-                onClick={() => navigate(values.redirectPath)}
+                onClick={() => Actions.onNavigate(values.redirectPath)}
                 className={values.isActive ? styles.selected : ""}
               >
                 {values.name}
               </span>
             )
           )}
-          <span onClick={() => logout()}>Logout</span>
+          <span onClick={Actions.onLogout}>Logout</span>
         </div>
       )}
     </aside>

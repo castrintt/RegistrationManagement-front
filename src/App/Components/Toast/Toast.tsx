@@ -1,14 +1,13 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
+import { UseToastController } from "./Toast.controller";
 
 const Toast = () => {
-  const milliseconds = 1000;
-  const closeTimeInSeconds = 4 * milliseconds;
-
+  const { States } = UseToastController();
   return (
     <ToastContainer
       position="top-right"
-      autoClose={closeTimeInSeconds}
+      autoClose={States.closeTimeInSeconds}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick

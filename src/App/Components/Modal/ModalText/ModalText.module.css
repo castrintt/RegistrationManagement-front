@@ -1,0 +1,13 @@
+.modal_text {
+    height: auto;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: justify;
+    font-size: .9rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.4rem;
+}

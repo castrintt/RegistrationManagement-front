@@ -1,0 +1,15 @@
+.icon {
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    font-size: 2rem;
+    color: red;
+    cursor: pointer;
+}
+
+@media all and (min-width: 600px) {
+    .icon {
+        right: .2rem;
+        top: .2rem;
+    }
+}

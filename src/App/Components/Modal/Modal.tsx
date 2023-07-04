@@ -1,18 +1,13 @@
-import React from "react";
-import styles from "./Modal.module.css";
+import ModalContainer from "./ModalContainer/ModalContainer";
+import ModalContent from "./ModalContent/ModalContent";
+import ModalText from "./ModalText/ModalText";
+import ModalTitle from "./ModalTitle/ModalTitle";
+import ModalCloseIcon from "./ModalCloseIcon/ModalCloseIcon";
 
-type Props = {
-
-  isOpen: boolean;
-  children: JSX.Element;
+export const Modal = {
+  Container: ModalContainer,
+  Content: ModalContent,
+  DefaultCloseIcon: ModalCloseIcon,
+  Text: ModalText,
+  Title: ModalTitle,
 };
-
-const Modal = ({ isOpen, children }: Props) => {
-  return (
-    <dialog className={styles.dialog_black_screen} open={isOpen}>
-      {children}
-    </dialog>
-  );
-};
-
-export default Modal;

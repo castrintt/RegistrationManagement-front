@@ -2,11 +2,10 @@ import React from "react";
 import styles from "./NotFound.module.css";
 import { MdDangerous } from "react-icons/md";
 import Buttons from "../../../Components/Buttons/Buttons";
-import { useNavigate } from "react-router-dom";
+import { UseNotFoundController } from "./NotFound.controller";
 
 const NotFound = () => {
-  const navigate = useNavigate();
-
+  const { Actions } = UseNotFoundController();
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -15,13 +14,13 @@ const NotFound = () => {
         <span>Por favor, escolha uma opção:</span>
         <div className={styles.buttons_container}>
           <Buttons
-            onClickMethod={() => navigate(-1)}
+            onClickMethod={() => Actions.onNavigate(-1)}
             buttonText={"voltar a ultima tela"}
             variant={"edit"}
             width={"100%"}
           />
           <Buttons
-            onClickMethod={() => navigate("/login")}
+            onClickMethod={() => Actions.onNavigate("/login")}
             buttonText={"ir ao login"}
             variant={"create"}
             width={"100%"}

@@ -25,14 +25,6 @@ export class AuthService implements IAuthService {
     return false;
   }
 
-  setDefaultHeaderAuthorizationConfiguration(accessToken: string): void {
-    axiosInstances.private.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-  }
-
-  setUserLocalStorageAccess(userResponse: LocalStorageSetter): void {
-    localStorage.setItem("encryptClient", encryptData(userResponse));
-  }
-
   async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
     return await this._httpPublic
       .post("/Authentication/generate_access_token", {
@@ -89,5 +81,16 @@ export class AuthService implements IAuthService {
         }
         return null;
       });
+  }
+
+  private setDefaultHeaderAuthorizationConfiguration(
+    accessToken: string
+  ): void {
+    axiosInstances.private.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    axiosInstances.privateForFile.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  }
+
+  private setUserLocalStorageAccess(userResponse: LocalStorageSetter): void {
+    localStorage.setItem("encryptClient", encryptData(userResponse));
   }
 }

@@ -1,46 +1,42 @@
-/* eslint-disable @typescript-eslint/no-namespace */
-/// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
+import { CreateUserRequest } from "../../business/domain/entities/request/client/registerUser/CreateUserRequest";
 
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>;
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
-//       dismiss(
-//         subject: string,
-//         options?: Partial<TypeOptions>
-//       ): Chainable<Element>;
-//       visit(
-//         originalFn: CommandOriginalFn,
-//         url: string,
-//         options: Partial<VisitOptions>
-//       ): Chainable<Element>;
-//     }
-//   }
-// }
+type RegisterCall = {
+  method: "POST" | "PUT" | "DELETE" | "GET";
+  path: string;
+  alias: string;
+};
+
+Cypress.Commands.add("interceptCall", (call: RegisterCall) => {
+  cy.intercept(call.method, call.path).as(call.alias);
+});
+
+Cypress.Commands.add("getInterpolation", (dataCy: string) => {
+  cy.get(`[data-cy="${dataCy}"]`);
+});
+
+Cypress.Commands.add("registerDataFlux", (user: CreateUserRequest) => {
+  cy.getInterpolation("email-input")
+    .should("be.visible")
+    .should("have.value", "")
+    .type(user.login);
+  cy.getInterpolation("password-input")
+    .should("be.visible")
+    .should("have.value", "")
+    .type(user.userPassword.password);
+  cy.getInterpolation("confirm-password-input")
+    .should("be.visible")
+    .should("have.value", "")
+    .type(user.userPassword.passwordConfirm);
+  cy.getInterpolation("terms-checkbox")
+    .should("be.visible")
+    .should("be.not.checked");
+  if (user.acceptTermsAndPolicies) {
+    cy.getInterpolation("terms-checkbox").check();
+  }
+  cy.getInterpolation("market-area-checkbox")
+    .should("be.visible")
+    .should("be.not.checked");
+  if (user.acceptNotification) {
+    cy.get("market-area-checkbox").check();
+  }
+});

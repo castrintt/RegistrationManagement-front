@@ -15,7 +15,7 @@ const randomLoginAttempt: AuthUserRequest = {
   saveLogin: false,
 };
 const invalidLoginAttempt: AuthUserRequest = {
-  login: 'Igor',
+  login: "Igor",
   password: randomPassword,
   saveLogin: false,
 };

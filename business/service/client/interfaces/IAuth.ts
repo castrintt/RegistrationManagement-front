@@ -6,7 +6,5 @@ import { RefreshTokenResponse } from "../../../domain/entities/response/client/r
 export interface IAuthService {
   checkAuthentication(): boolean;
   authUser(user: AuthUserRequest): Promise<AuthUserResponse>;
-  setUserLocalStorageAccess(userResponse: AuthUserResponse): void;
-  setDefaultHeaderAuthorizationConfiguration(accessToken: string): void;
   refreshToken(access: RefreshTokenRequest): Promise<RefreshTokenResponse>;
 }

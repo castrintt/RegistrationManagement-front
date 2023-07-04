@@ -31,6 +31,7 @@ import { SlLogout } from "react-icons/sl";
 import styles from "./Icons.module.css";
 import React from "react";
 import TooltipComponent from "../Tooltip/Tooltip";
+import UseIconController from "./Icons.controller";
 
 export type Colors =
   | "red"
@@ -90,36 +91,12 @@ const Icons = ({
   isActive,
   tooltip,
 }: IconsProps) => {
-  const allColors = {
-    red: "#D22929",
-    green: "#62C132",
-    purple: "#793DC7",
-    orange: "#DBA000",
-    lightBlue: "#3DBAC7",
-    darkBlue: "#00388A",
-    white: "white",
-    disabled: "#BBBBBB",
+  const controllerProps = {
+    color,
+    size,
+    isActive,
   };
-
-  const colorCheckStyle = () => {
-    if (isActive) {
-      return {
-        color: allColors.lightBlue,
-        fontSize: size,
-      };
-    }
-    return {
-      color: allColors[color],
-      fontSize: size,
-    };
-  };
-
-  const classNameCheck = () => {
-    if (color === "white" || color === "darkBlue") {
-      return styles.hover_action;
-    }
-    return "";
-  };
+  const { Actions } = UseIconController(controllerProps);
 
   const selectedIcon = {
     pending: (
@@ -129,8 +106,8 @@ const Icons = ({
         children={
           <MdPendingActions
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -143,8 +120,8 @@ const Icons = ({
         children={
           <AiOutlineHome
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -157,8 +134,8 @@ const Icons = ({
         children={
           <AiOutlineUser
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -171,8 +148,8 @@ const Icons = ({
         children={
           <RxDashboard
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -185,8 +162,8 @@ const Icons = ({
         children={
           <SlLogout
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -199,8 +176,8 @@ const Icons = ({
         children={
           <GiHamburgerMenu
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -213,8 +190,8 @@ const Icons = ({
         children={
           <IoIosNotificationsOutline
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -227,8 +204,8 @@ const Icons = ({
         children={
           <SiAdguard
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -241,8 +218,8 @@ const Icons = ({
         children={
           <FiFilter
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -255,8 +232,8 @@ const Icons = ({
         children={
           <HiOutlineChatBubbleLeftEllipsis
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -269,8 +246,8 @@ const Icons = ({
         children={
           <HiOutlineExclamation
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -283,8 +260,8 @@ const Icons = ({
         children={
           <IoWarningOutline
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -297,8 +274,8 @@ const Icons = ({
         children={
           <RiCloseCircleFill
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -311,8 +288,8 @@ const Icons = ({
         children={
           <AiOutlineEyeInvisible
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -325,8 +302,8 @@ const Icons = ({
         children={
           <AiOutlineEye
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -339,8 +316,8 @@ const Icons = ({
         children={
           <RiEyeCloseLine
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -353,8 +330,8 @@ const Icons = ({
         children={
           <HiOutlineCog8Tooth
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -367,8 +344,8 @@ const Icons = ({
         children={
           <IoKeyOutline
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -381,8 +358,8 @@ const Icons = ({
         children={
           <GrGroup
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -395,8 +372,8 @@ const Icons = ({
         children={
           <HiOutlineUser
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -409,8 +386,8 @@ const Icons = ({
         children={
           <AiOutlineSearch
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -423,8 +400,8 @@ const Icons = ({
         children={
           <BiAddToQueue
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -437,8 +414,8 @@ const Icons = ({
         children={
           <FiEdit
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -451,8 +428,8 @@ const Icons = ({
         children={
           <BsFillTrash3Fill
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -465,8 +442,8 @@ const Icons = ({
         children={
           <MdOutlineDragHandle
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -479,8 +456,8 @@ const Icons = ({
         children={
           <GrDocumentVerified
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -493,8 +470,8 @@ const Icons = ({
         children={
           <FaStackExchange
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -507,8 +484,8 @@ const Icons = ({
         children={
           <FaRegAddressCard
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }
@@ -521,8 +498,8 @@ const Icons = ({
         children={
           <IoDocumentsOutline
             data-cy={`icons-${icon}`}
-            style={colorCheckStyle()}
-            className={classNameCheck()}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
             onClick={() => action()}
           />
         }

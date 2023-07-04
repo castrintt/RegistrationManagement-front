@@ -11,7 +11,7 @@ export class RegisterService implements IRegisterService {
 
   async getTerms(): Promise<Terms> {
     return await this._http
-      .get("/PrivacyPolicy/get_privacy_policy_the_last_published")
+      .get("/TermsOfUse/get_terms_the_last_published")
       .then((response) => {
         if (response.status === 200) {
           return response.data;
@@ -24,7 +24,7 @@ export class RegisterService implements IRegisterService {
   }
   async getPolicies(): Promise<Policies> {
     return await this._http
-      .get("/TermsOfUse/get_terms_the_last_published")
+      .get("/PrivacyPolicy/get_privacy_policy_the_last_published")
       .then((response) => {
         if (response.status === 200) {
           return response.data;
