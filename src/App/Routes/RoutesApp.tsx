@@ -6,7 +6,7 @@ import * as LAZY_ROUTES from "./LazyRoutes";
 import ProtectedRoute from "./ProtectedRoute";
 import { useAppSelector } from "../Store/Store";
 import Loading from "../Components/Loading/Loading";
-import { ClientDataPaths } from "./ClientDataPaths";
+import { Paths } from "./DynamicPaths";
 
 const RoutesApp = () => {
   const { isLoading } = useAppSelector((state) => state.loading);
@@ -37,7 +37,7 @@ const RoutesApp = () => {
             }
           />
           {/*  AUTHORIZED CLIENT - user data */}
-          {ClientDataPaths.map((values: { path: string }, index: number) => (
+          {Paths.Client.map((values: { path: string }, index: number) => (
             <React.Fragment key={index}>
               <Route
                 path={values.path}
