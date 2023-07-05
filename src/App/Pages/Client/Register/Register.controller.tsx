@@ -89,9 +89,9 @@ const UseRegisterController = () => {
     setTermsModal(false);
   };
 
-  useEffect(() => {
+  const dispatchLoadingAction = () => {
     dispatch(loadingState(isLoading() ? "initialize" : "cancel"));
-  }, [loading]);
+  };
 
   return {
     Actions: {
@@ -101,6 +101,7 @@ const UseRegisterController = () => {
       onOpenTermsModal: openTermsModal,
       onCloseTermsModal: closeTermsModal,
       onNavigate: navigate,
+      onLoading: dispatchLoadingAction,
     },
     States: {
       modalTexts,

@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React from "react";
+import { useEffect } from "react";
 import styles from "./Login.module.css";
 import Buttons from "../../../Components/Buttons/Buttons";
 import { Link } from "react-router-dom";
@@ -8,7 +9,11 @@ import LogoImage from "../../../Assets/white-label.png";
 import UseLoginController from "./Login.controller";
 
 const Login = () => {
-  const { Actions, Helpers } = UseLoginController();
+  const { Actions, Helpers, States } = UseLoginController();
+
+  useEffect(() => {
+    Actions.onLoading();
+  }, [States.loading]);
 
   return (
     <div className={styles.container} data-cy="container">

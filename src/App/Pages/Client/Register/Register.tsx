@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Register.module.css";
 import Buttons from "../../../Components/Buttons/Buttons";
 import LabelLogo from "../../../Assets/white-label.png";
@@ -8,6 +9,10 @@ import { Modal } from "../../../Components/Modal/Modal";
 
 const Register = () => {
   const { Actions, States, Helpers } = UseRegisterController();
+
+  useEffect(() => {
+    Actions.onLoading();
+  }, [States.loading]);
   return (
     <React.Fragment>
       <Modal.Container isOpen={States.termsModal}>

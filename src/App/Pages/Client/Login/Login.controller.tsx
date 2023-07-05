@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -42,17 +40,19 @@ const UseLoginController = () => {
       }
     });
   };
+
   const loadingObserver = () => {
     dispatch(loadingState(loading ? "initialize" : "cancel"));
   };
-  useEffect(() => {
-    loadingObserver();
-  }, [loading]);
 
   return {
     Actions: {
       onLogin: onSubmit,
       onNavigate: navigate,
+      onLoading: loadingObserver,
+    },
+    States: {
+      loading,
     },
     Helpers: {
       input: register,
