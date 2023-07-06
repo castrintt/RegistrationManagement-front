@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { devEnvironment } from "../environments/dev";
-// import { prodEnvironment } from "../environments/prod";
+import { devEnvironment } from "@environments/dev";
+// import { prodEnvironment } from "@environments/prod";
 import { AES, enc } from "crypto-js";
 
 const secretKey = devEnvironment.encryptSecretKey;

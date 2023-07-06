@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LogoutService } from "./../../../../business/service/client/Logout.service";
+import { LogoutService } from "@clientService/Logout.service";
 
 const UseBaseController = () => {
   const iconsSize = "1.7rem";

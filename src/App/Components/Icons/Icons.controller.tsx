@@ -1,5 +1,5 @@
-import { Colors } from "./Icons";
 import styles from "./Icons.module.css";
+import { Colors } from "./Icons.types";
 
 type Props = {
   color: Colors;

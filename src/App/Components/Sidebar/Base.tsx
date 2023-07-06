@@ -2,9 +2,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React from "react";
 import styles from "./Base.module.css";
-import Icons, { IconsProps } from "../Icons/Icons";
-import WhiteLabelImage from "../../Assets/white-label.png";
+import Icons from "@components/Icons/Icons";
+import WhiteLabelImage from "@assets/white-label.png";
 import UseBaseController from "./Base.controller";
+import { IconsProps } from "@components/Icons/Icons.types";
 
 type ResponsiveProps = {
   name: string;

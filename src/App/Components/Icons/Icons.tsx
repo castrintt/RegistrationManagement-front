@@ -6,6 +6,15 @@ import {
   AiOutlineSearch,
   AiOutlineUser,
 } from "react-icons/ai";
+import {
+  IoWarningOutline,
+  IoKeyOutline,
+  IoDocumentsOutline,
+} from "react-icons/io5";
+import {
+  HiOutlineChatBubbleLeftEllipsis,
+  HiOutlineCog8Tooth,
+} from "react-icons/hi2";
 import { BiAddToQueue } from "react-icons/bi";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { FaRegAddressCard, FaStackExchange } from "react-icons/fa";
@@ -13,75 +22,15 @@ import { FiEdit, FiFilter } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrDocumentVerified, GrGroup } from "react-icons/gr";
 import { HiOutlineExclamation, HiOutlineUser } from "react-icons/hi";
-import {
-  HiOutlineChatBubbleLeftEllipsis,
-  HiOutlineCog8Tooth,
-} from "react-icons/hi2";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import {
-  IoWarningOutline,
-  IoKeyOutline,
-  IoDocumentsOutline,
-} from "react-icons/io5";
 import { MdOutlineDragHandle, MdPendingActions } from "react-icons/md";
 import { RiCloseCircleFill, RiEyeCloseLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
 import { SiAdguard } from "react-icons/si";
 import { SlLogout } from "react-icons/sl";
-import styles from "./Icons.module.css";
-import React from "react";
 import TooltipComponent from "../Tooltip/Tooltip";
 import UseIconController from "./Icons.controller";
-
-export type Colors =
-  | "red"
-  | "green"
-  | "purple"
-  | "orange"
-  | "lightBlue"
-  | "darkBlue"
-  | "white"
-  | "disabled";
-
-export type IconName =
-  | "pending"
-  | "home"
-  | "user"
-  | "dashboard"
-  | "logout"
-  | "hamburger"
-  | "notification"
-  | "terms"
-  | "filter"
-  | "inService"
-  | "exclamation"
-  | "warning"
-  | "closed"
-  | "cutEye"
-  | "openEye"
-  | "closedEye"
-  | "configuration"
-  | "key"
-  | "group"
-  | "admUser"
-  | "search"
-  | "add"
-  | "edit"
-  | "trash"
-  | "drag"
-  | "aproveDocument"
-  | "documents"
-  | "configTerms"
-  | "address";
-
-export type IconsProps = {
-  icon: IconName;
-  color: Colors;
-  size: string;
-  action: Function;
-  isActive: boolean;
-  tooltip: { title: string; position: "left" | "right" | "top" | "bottom" };
-};
+import { IconsProps } from "./Icons.types";
 
 const Icons = ({
   icon,

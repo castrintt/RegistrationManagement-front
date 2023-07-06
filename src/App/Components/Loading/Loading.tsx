@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingGif from "../../Assets/Balls_line.gif";
+import LoadingGif from "@assets/Balls_line.gif";
 import styles from "./Loading.module.css";
 
 type Props = {
