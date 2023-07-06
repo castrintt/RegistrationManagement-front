@@ -1,11 +1,11 @@
 import { IAuthService } from "./interfaces/IAuth";
-import { decryptData, encryptData } from "../../../utils/crypto";
-import { AuthUserRequest } from "../../domain/entities/request/client/authUser/AuthUserRequest";
-import { RefreshTokenRequest } from "../../domain/entities/request/client/refreshToken/RefreshTokenRequest";
-import { AuthUserResponse } from "../../domain/entities/response/client/authUser/AuthUserResponse";
-import { RefreshTokenResponse } from "../../domain/entities/response/client/refreshToken/RefreshTokenResponse";
-import { axiosInstances } from "../../../config/axiosInstances";
-import { callToast } from "../../../utils/toastCall";
+import { decryptData, encryptData } from "@utils/crypto";
+import { AuthUserRequest } from "@clientRequest/authUser/AuthUserRequest";
+import { RefreshTokenRequest } from "@clientRequest/refreshToken/RefreshTokenRequest";
+import { AuthUserResponse } from "@clientResponse/authUser/AuthUserResponse";
+import { RefreshTokenResponse } from "@clientResponse/refreshToken/RefreshTokenResponse";
+import { axiosInstances } from "@config/axiosInstances";
+import { callToast } from "@utils/toastCall";
 
 type LocalStorageSetter = {
   message: string;
@@ -33,20 +33,21 @@ export class AuthService implements IAuthService {
       })
       .then((response) => {
         if (response.status === 200 && response.data) {
-          this.setUserLocalStorageAccess({
-            ...response.data,
-            loginAttempt: new Date(),
-          });
-          this.setDefaultHeaderAuthorizationConfiguration(
-            response.data.accessToken
-          );
+          const serverResponse = response.data;
           const message = response.data.message;
           if (message.includes("autenticado com sucesso")) {
             callToast(message, "success");
           } else {
             callToast(message, "error");
           }
-          return response.data;
+          this.setUserLocalStorageAccess({
+            ...serverResponse,
+            loginAttempt: new Date(),
+          });
+          this.setDefaultHeaderAuthorizationConfiguration(
+            serverResponse.accessToken
+          );
+          return serverResponse;
         }
         return null;
       })

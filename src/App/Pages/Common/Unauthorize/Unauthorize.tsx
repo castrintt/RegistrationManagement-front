@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Unauthorize.module.css";
 import { IoIosAlert } from "react-icons/io";
-import Buttons from "../../../Components/Buttons/Buttons";
+import Buttons from "@components/Buttons/Buttons";
 import { UseUnauthorizeController } from "./Unauthorize.controller";
 
 const Unauthorize = () => {

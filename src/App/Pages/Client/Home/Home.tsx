@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import styles from "./Home.module.css";
-import commonStyles from "../../../styles/CommonSidebarWithComponent.module.css";
-import ClientSidebar from "../../../Components/Sidebar/Client/ClientSidebar";
+import commonStyles from "@styles/CommonSidebarWithComponent.module.css";
+import ClientSidebar from "@components/Sidebar/Client/ClientSidebar";
 
 const Home = () => {
   return (

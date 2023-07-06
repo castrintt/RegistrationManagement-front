@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { RegisterService } from "../../../../../../business/service/client/Register.service";
+import { RegisterService } from "@clientService/Register.service";
 
 const registerService = new RegisterService();
 

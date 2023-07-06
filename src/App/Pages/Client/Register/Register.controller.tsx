@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useAppSelector } from "../../../Store/Store";
-import { fetchTerms } from "../../../Store/reducers/register/terms/actions";
+import { useAppSelector } from "@store/Store";
+import { fetchTerms } from "@store/reducers/register/terms/actions";
 import { useDispatch } from "react-redux";
-import { fetchPolicies } from "../../../Store/reducers/register/policies/actions";
-import { loadingState } from "../../../Store/reducers/loading/loadingSlice";
-import { createUser } from "../../../Store/reducers/register/newUser/actions";
-import { callToast } from "../../../../../utils/toastCall";
+import { fetchPolicies } from "@store/reducers/register/policies/actions";
+import { loadingState } from "@store/reducers/loading/loadingSlice";
+import { createUser } from "@store/reducers/register/newUser/actions";
+import { callToast } from "@utils/toastCall";
 
 type FormValues = {
   email: string;

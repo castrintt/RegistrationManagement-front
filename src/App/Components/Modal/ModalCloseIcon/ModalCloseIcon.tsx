@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ModalIcon.module.css";
+import styles from "./ModalCloseIcon.module.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 type Props = {

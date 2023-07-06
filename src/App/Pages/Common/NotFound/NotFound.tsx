@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./NotFound.module.css";
 import { MdDangerous } from "react-icons/md";
-import Buttons from "../../../Components/Buttons/Buttons";
+import Buttons from "@components/Buttons/Buttons";
 import { UseNotFoundController } from "./NotFound.controller";
 
 const NotFound = () => {

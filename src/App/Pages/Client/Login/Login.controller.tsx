@@ -2,9 +2,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authClient } from "../../../Store/reducers/authClient/actions";
-import { useAppSelector } from "../../../Store/Store";
-import { loadingState } from "../../../Store/reducers/loading/loadingSlice";
+import { authClient } from "@store/reducers/authClient/actions";
+import { useAppSelector } from "@store/Store";
+import { loadingState } from "@store/reducers/loading/loadingSlice";
 
 type FormValues = {
   email: string;

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Terms } from "../../../../../../business/domain/entities/response/client/terms/terms";
+import { Terms } from "@clientResponse/terms/terms";
 import { fetchTerms } from "./actions";
 
 export type InitialState = {

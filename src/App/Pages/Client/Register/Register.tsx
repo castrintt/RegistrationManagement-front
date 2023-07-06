@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useEffect } from "react";
 import styles from "./Register.module.css";
-import Buttons from "../../../Components/Buttons/Buttons";
-import LabelLogo from "../../../Assets/white-label.png";
+import Buttons from "@components/Buttons/Buttons";
+import LabelLogo from "@assets/white-label.png";
 import UseRegisterController from "./Register.controller";
-import { Modal } from "../../../Components/Modal/Modal";
+import { Modal } from "@components/Modal/Modal";
 
 const Register = () => {
   const { Actions, States, Helpers } = UseRegisterController();

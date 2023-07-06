@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { useEffect } from "react";
 import styles from "./Login.module.css";
-import Buttons from "../../../Components/Buttons/Buttons";
+import Buttons from "@components/Buttons/Buttons";
 import { Link } from "react-router-dom";
-import LogoImage from "../../../Assets/white-label.png";
-
+import LogoImage from "@assets/white-label.png";
 import UseLoginController from "./Login.controller";
 
 const Login = () => {

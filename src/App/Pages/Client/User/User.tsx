@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./User.module.css";
-import ClientSidebar from "../../../Components/Sidebar/Client/ClientSidebar";
-import commonStyles from "../../../styles/CommonSidebarWithComponent.module.css";
+import ClientSidebar from "@components/Sidebar/Client/ClientSidebar";
+import commonStyles from "@styles/CommonSidebarWithComponent.module.css";
 
 const User = () => {
   return (

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AuthService } from "../../../../../business/service/client/Auth.service";
-import { AuthUserRequest } from "../../../../../business/domain/entities/request/client/authUser/AuthUserRequest";
+import { AuthService } from "@clientService/Auth.service";
+import { AuthUserRequest } from "@clientRequest/authUser/AuthUserRequest";
 
 const authService = new AuthService();
 

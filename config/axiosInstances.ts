@@ -1,20 +1,25 @@
-import * as AXIOS_HELPERS from "./axiosHelpers";
+import {
+  getEnvironmentUrl,
+  conditionToValidateTimeThatUserIsLogged,
+  localStorageAccessToken,
+  localStorageBearerToken,
+} from "./axiosHelpers";
 import { AxiosBuilder } from "./builder";
 import { AuthService } from "../business/service/client/Auth.service";
 import { LogoutService } from "../business/service/client/Logout.service";
 
 const axiosInstances = {
   public: AxiosBuilder.create()
-    .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+    .withUrl(getEnvironmentUrl())
     .toDomain()
     .initInstance(),
   private: AxiosBuilder.create()
-    .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+    .withUrl(getEnvironmentUrl())
     .haveCredentials()
     .toDomain()
     .initInstance(),
   privateForFile: AxiosBuilder.create()
-    .withUrl(AXIOS_HELPERS.getEnvironmentUrl())
+    .withUrl(getEnvironmentUrl())
     .withHeaders({
       "Content-Type": "multipart/form-data",
     })
@@ -29,11 +34,11 @@ const createRequestInterceptorForAuthentication = (
   instance: MappedInstances
 ) => {
   return axiosInstances[instance].interceptors.request.use(async (config) => {
-    if (AXIOS_HELPERS.conditionToValidateTimeThatUserIsLogged()) {
+    if (conditionToValidateTimeThatUserIsLogged()) {
       try {
         const authService = new AuthService();
-        await authService.refreshToken(AXIOS_HELPERS.localStorageAccessToken());
-        const token = AXIOS_HELPERS.localStorageBearerToken();
+        await authService.refreshToken(localStorageAccessToken());
+        const token = localStorageBearerToken();
         config.headers.Authorization = token;
       } catch (err) {
         console.log("Error", err);

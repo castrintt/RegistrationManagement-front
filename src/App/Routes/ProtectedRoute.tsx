@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { AuthService } from "./../../../business/service/client/Auth.service";
+import { AuthService } from "@clientService/Auth.service";
 
 type Props = {
   children: JSX.Element;

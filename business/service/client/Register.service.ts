@@ -1,9 +1,9 @@
-import { Policies } from "../../domain/entities/response/client/policies/policies";
-import { Terms } from "../../domain/entities/response/client/terms/terms";
+import { Policies } from "@clientResponse/policies/policies";
+import { Terms } from "@clientResponse/terms/terms";
 import { IRegisterService } from "./interfaces/IRegister";
-import { axiosInstances } from "../../../config/axiosInstances";
-import { CreateUserRequest } from "../../domain/entities/request/client/registerUser/CreateUserRequest";
-import { callToast } from "../../../utils/toastCall";
+import { axiosInstances } from "@config/axiosInstances";
+import { CreateUserRequest } from "@clientRequest/registerUser/CreateUserRequest";
+import { callToast } from "@utils/toastCall";
 import { AxiosInstance } from "axios";
 
 export class RegisterService implements IRegisterService {

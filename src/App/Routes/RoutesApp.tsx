@@ -4,8 +4,8 @@ import { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import * as LAZY_ROUTES from "./LazyRoutes";
 import ProtectedRoute from "./ProtectedRoute";
-import { useAppSelector } from "../Store/Store";
-import Loading from "../Components/Loading/Loading";
+import { useAppSelector } from "@store/Store";
+import Loading from "@components/Loading/Loading";
 import { Paths } from "./DynamicPaths";
 
 const RoutesApp = () => {

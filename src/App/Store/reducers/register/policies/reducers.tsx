@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Policies } from "../../../../../../business/domain/entities/response/client/policies/policies";
+import { Policies } from "@clientResponse/policies/policies";
 import { fetchPolicies } from "./actions";
 
 export type InitialState = {
