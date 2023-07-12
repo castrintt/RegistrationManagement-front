@@ -3,8 +3,10 @@ import React from "react";
 import styles from "./Home.module.css";
 import commonStyles from "@styles/CommonSidebarWithComponent.module.css";
 import ClientSidebar from "@components/Sidebar/Client/ClientSidebar";
+import UseHomeController from "./Home.controller";
 
 const Home = () => {
+  const { Actions, States } = UseHomeController();
   return (
     <div className={commonStyles.container}>
       <ClientSidebar />

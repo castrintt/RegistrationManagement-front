@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-empty-function */
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import styles from "./Login.module.css";
 import Buttons from "@components/Buttons/Buttons";
-import { Link } from "react-router-dom";
 import LogoImage from "@assets/white-label.png";
 import UseLoginController from "./Login.controller";
 

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useForm, SubmitHandler } from "react-hook-form";
+import { authClient } from "@store/reducers/authClient/actions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authClient } from "@store/reducers/authClient/actions";
 import { useAppSelector } from "@store/Store";
 import { loadingState } from "@store/reducers/loading/loadingSlice";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { AuthUserResponse } from "@clientResponse/authUser/AuthUserResponse";
 
 type FormValues = {
   email: string;
@@ -13,19 +14,15 @@ type FormValues = {
 };
 
 type PayloadResponse = {
-  payload: {
-    accessToken: string;
-    expiry: number;
-    message: string;
-    refreshToken: string;
-  };
+  payload: AuthUserResponse;
 };
 
 const UseLoginController = () => {
   const { register, handleSubmit } = useForm<FormValues>();
+  const { loading } = useAppSelector((state) => state.clientLogin);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading } = useAppSelector((state) => state.clientLogin);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     dispatch(

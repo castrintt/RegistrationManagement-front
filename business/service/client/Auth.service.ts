@@ -16,14 +16,7 @@ type LocalStorageSetter = {
 };
 export class AuthService implements IAuthService {
   private _httpPublic = axiosInstances.public;
-
-  checkAuthentication(): boolean {
-    const localToken = localStorage.getItem("encryptClient");
-    if (localToken) {
-      return !!decryptData(localToken)["accessToken"];
-    }
-    return false;
-  }
+  private _httpPrivate = axiosInstances.private;
 
   async authUser(user: AuthUserRequest): Promise<AuthUserResponse> {
     return await this._httpPublic
@@ -59,12 +52,11 @@ export class AuthService implements IAuthService {
         return null;
       });
   }
-
   async refreshToken(
     access: RefreshTokenRequest
   ): Promise<RefreshTokenResponse> {
     return await this._httpPublic
-      .post("/Authentication/update_acess_token", access)
+      .post("/Authentication/update_access_token", access)
       .then((response) => {
         if (response.status === 200 && response.data) {
           this.setUserLocalStorageAccess({
@@ -72,13 +64,6 @@ export class AuthService implements IAuthService {
             loginAttempt: new Date(),
           });
           return response.data;
-        }
-        return null;
-      })
-      .catch((err) => {
-        if (err) {
-          const message = err.response.data[0].value;
-          callToast(message, "error");
         }
         return null;
       });
@@ -90,8 +75,15 @@ export class AuthService implements IAuthService {
     axiosInstances.private.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     axiosInstances.privateForFile.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }
-
   private setUserLocalStorageAccess(userResponse: LocalStorageSetter): void {
     localStorage.setItem("encryptClient", encryptData(userResponse));
+  }
+
+  checkAuthentication(): boolean {
+    const localToken = localStorage.getItem("encryptClient");
+    if (localToken) {
+      return !!decryptData(localToken)["accessToken"];
+    }
+    return false;
   }
 }
