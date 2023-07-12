@@ -3,8 +3,8 @@ import {
   // conditionToValidateTimeThatUserIsLogged,
   // localStorageAccessToken,
   // localStorageBearerToken,
-} from "./axiosHelpers";
-import { AxiosBuilder } from "./builder";
+} from "./axios.helpers";
+import { AxiosBuilder } from "./axios.builder";
 // import { AuthService } from "../business/service/client/Auth.service";
 // import { LogoutService } from "../business/service/client/Logout.service";
 

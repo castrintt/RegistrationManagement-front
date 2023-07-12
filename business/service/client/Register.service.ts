@@ -1,7 +1,7 @@
 import { Policies } from "@clientResponse/policies/policies";
 import { Terms } from "@clientResponse/terms/terms";
 import { IRegisterService } from "./interfaces/IRegister";
-import { axiosInstances } from "@config/axiosInstances";
+import { axiosInstances } from "@config/axios.instances";
 import { CreateUserRequest } from "@clientRequest/registerUser/CreateUserRequest";
 import { callToast } from "@utils/toastCall";
 import { AxiosInstance } from "axios";

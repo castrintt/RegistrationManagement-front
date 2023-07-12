@@ -68,11 +68,8 @@ const conditionToValidateTimeThatUserIsLogged = () => {
 };
 
 export {
-  localStorageAccessToken,
-  localStorageBearerToken,
-  localStorageExpirationTime,
-  localStorageLoginAttemptDate,
-  getDifferenceBetweenADateAndNow,
   getEnvironmentUrl,
   conditionToValidateTimeThatUserIsLogged,
+  localStorageAccessToken,
+  localStorageBearerToken,
 };

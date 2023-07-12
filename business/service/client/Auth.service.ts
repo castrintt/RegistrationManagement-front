@@ -4,7 +4,7 @@ import { AuthUserRequest } from "@clientRequest/authUser/AuthUserRequest";
 import { RefreshTokenRequest } from "@clientRequest/refreshToken/RefreshTokenRequest";
 import { AuthUserResponse } from "@clientResponse/authUser/AuthUserResponse";
 import { RefreshTokenResponse } from "@clientResponse/refreshToken/RefreshTokenResponse";
-import { axiosInstances } from "@config/axiosInstances";
+import { axiosInstances } from "@config/axios.instances";
 import { callToast } from "@utils/toastCall";
 
 type LocalStorageSetter = {
