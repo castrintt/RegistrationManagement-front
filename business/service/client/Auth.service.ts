@@ -52,6 +52,7 @@ export class AuthService implements IAuthService {
         return null;
       });
   }
+
   async refreshToken(
     access: RefreshTokenRequest
   ): Promise<RefreshTokenResponse> {
@@ -78,6 +79,7 @@ export class AuthService implements IAuthService {
     axiosInstances.private.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     axiosInstances.privateForFile.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }
+
   private setUserLocalStorageAccess(userResponse: LocalStorageSetter): void {
     localStorage.setItem("encryptClient", encryptData(userResponse));
   }

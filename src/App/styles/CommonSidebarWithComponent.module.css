@@ -7,8 +7,13 @@
     align-items: flex-start;
 }
 
+.container>aside {
+    flex-grow: 0;
+}
+
 .main_content {
-    width: 100%;
+    padding-left: 5rem;
+    flex-grow: 1;
     height: 100%;
     background-color: rgba(128, 128, 128, 0.26);
 }
