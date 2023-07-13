@@ -55,7 +55,7 @@ export class AuthService implements IAuthService {
   async refreshToken(
     access: RefreshTokenRequest
   ): Promise<RefreshTokenResponse> {
-    return await this._httpPublic
+    return await this._httpPrivate
       .post("/Authentication/update_access_token", access)
       .then((response) => {
         if (response.status === 200 && response.data) {
@@ -63,6 +63,9 @@ export class AuthService implements IAuthService {
             ...response.data,
             loginAttempt: new Date(),
           });
+          this.setDefaultHeaderAuthorizationConfiguration(
+            response.data.accessToken
+          );
           return response.data;
         }
         return null;

@@ -61,10 +61,14 @@ const getDifferenceBetweenADateAndNow = (loginAttemptTime: Date): number => {
 
 const conditionToValidateTimeThatUserIsLogged = () => {
   return (
-    getDifferenceBetweenADateAndNow(localStorageLoginAttemptDate()) >= 0 &&
+    getDifferenceBetweenADateAndNow(localStorageLoginAttemptDate()) >= 50 &&
     getDifferenceBetweenADateAndNow(localStorageLoginAttemptDate()) <=
       localStorageExpirationTime()
   );
+};
+
+const verifyIfOneHourHavePast = () => {
+  return getDifferenceBetweenADateAndNow(localStorageLoginAttemptDate()) > 60;
 };
 
 export {
@@ -72,4 +76,5 @@ export {
   conditionToValidateTimeThatUserIsLogged,
   localStorageAccessToken,
   localStorageBearerToken,
+  verifyIfOneHourHavePast,
 };

@@ -1,12 +1,12 @@
 import {
   getEnvironmentUrl,
-  // conditionToValidateTimeThatUserIsLogged,
-  // localStorageAccessToken,
-  // localStorageBearerToken,
+  conditionToValidateTimeThatUserIsLogged,
+  localStorageAccessToken,
+  verifyIfOneHourHavePast
 } from "./axios.helpers";
 import { AxiosBuilder } from "./axios.builder";
-// import { AuthService } from "../business/service/client/Auth.service";
-// import { LogoutService } from "../business/service/client/Logout.service";
+import { AuthService } from "../business/service/client/Auth.service";
+import { LogoutService } from "../business/service/client/Logout.service";
 
 const axiosInstances = {
   public: AxiosBuilder.create()
@@ -28,41 +28,39 @@ const axiosInstances = {
     .initInstance(),
 };
 
-// axiosInstances.private.interceptors.request.use(async (config) => {
-//   if (conditionToValidateTimeThatUserIsLogged()) {
-//     try {
-//       const authService = new AuthService();
-//       await authService.refreshToken(localStorageAccessToken());
-//       const token = localStorageBearerToken();
-//       config.headers.Authorization = token;
-//     } catch (err) {
-//       console.log("Error", err);
-//     }
-//     return config;
-//   } else {
-//     const logoutServices = new LogoutService();
-//     logoutServices.logout();
-//     config.headers.Authorization = "";
-//     return config;
-//   }
-// });
-// axiosInstances.privateForFile.interceptors.request.use(async (config) => {
-//   if (conditionToValidateTimeThatUserIsLogged()) {
-//     try {
-//       const authService = new AuthService();
-//       await authService.refreshToken(localStorageAccessToken());
-//       const token = localStorageBearerToken();
-//       config.headers.Authorization = token;
-//     } catch (err) {
-//       console.log("Error", err);
-//     }
-//     return config;
-//   } else {
-//     const logoutServices = new LogoutService();
-//     logoutServices.logout();
-//     config.headers.Authorization = "";
-//     return config;
-//   }
-// });
+type MappedInstances = keyof typeof axiosInstances;
+
+const createRequestInterceptorForAuthentication = (
+  instance: MappedInstances
+) => {
+  return axiosInstances[instance].interceptors.request.use(async (config) => {
+    const path: string = config.url ?? "";
+    if (conditionToValidateTimeThatUserIsLogged()) {
+      if (
+        !path.includes("/Authentication/generate_access_token") &&
+        !path.includes("/Authentication/update_access_token")
+      ) {
+        try {
+          const authService = new AuthService();
+          await authService.refreshToken(localStorageAccessToken());
+        } catch (err) {
+          console.log("Error", err);
+        }
+      }
+      return config;
+    } 
+
+    if (verifyIfOneHourHavePast()) {
+      const logoutServices = new LogoutService();
+      logoutServices.logout();
+      config.headers.Authorization = "";
+      return config;
+    }
+     return config;
+  });
+};
+
+createRequestInterceptorForAuthentication("private");
+createRequestInterceptorForAuthentication("privateForFile");
 
 export { axiosInstances };
