@@ -27,46 +27,19 @@ const RoutesApp = () => {
 
           {/* AUTHORIZED ADM */}
 
-          {/* AUTHORIZED CLIENT - home */}
-          <Route
-            path="/client/home"
-            element={
-              <ProtectedRoute>
-                <LAZY_ROUTES.Client.Home />
-              </ProtectedRoute>
-            }
-          />
-          {/*  AUTHORIZED CLIENT - user data */}
+          {/* AUTHORIZED CLIENT  */}
           {Paths.Client.map((values: { path: string }, index: number) => (
             <React.Fragment key={index}>
               <Route
                 path={values.path}
                 element={
                   <ProtectedRoute>
-                    <LAZY_ROUTES.Client.User />
+                    <LAZY_ROUTES.Client.MainClient />
                   </ProtectedRoute>
                 }
               />
             </React.Fragment>
           ))}
-          {/* AUTHORIZED CLIENT - application */}
-          <Route
-            path="/client/application"
-            element={
-              <ProtectedRoute>
-                <LAZY_ROUTES.Client.Application />
-              </ProtectedRoute>
-            }
-          />
-          {/* AUTHORIZED CLIENT - documents */}
-          <Route
-            path="/client/documents"
-            element={
-              <ProtectedRoute>
-                <LAZY_ROUTES.Client.Documents />
-              </ProtectedRoute>
-            }
-          />
 
           {/* UNAUTHORIZE + NOTFOUND */}
           <Route path="unauthorize" element={<LAZY_ROUTES.Unauthorize />} />
