@@ -1,8 +1,8 @@
+import { EIconColor } from "@enums/EIconColor";
 import styles from "./Icons.module.css";
-import { Colors } from "./Icons.types";
 
 type Props = {
-  color: Colors;
+  color: EIconColor;
   size: string;
   isActive: boolean;
 };

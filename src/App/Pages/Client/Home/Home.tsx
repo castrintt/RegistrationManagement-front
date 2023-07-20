@@ -8,7 +8,7 @@ const Home = () => {
   const { Actions, States } = UseHomeController();
   return (
     <div>
-      <h1>Home</h1>
+      <span>Home</span>
     </div>
   );
 };

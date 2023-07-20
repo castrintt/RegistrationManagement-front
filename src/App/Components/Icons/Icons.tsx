@@ -1,35 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import {
-  AiOutlineEye,
-  AiOutlineEyeInvisible,
-  AiOutlineHome,
-  AiOutlineSearch,
-  AiOutlineUser,
-} from "react-icons/ai";
-import {
-  IoWarningOutline,
-  IoKeyOutline,
-  IoDocumentsOutline,
-} from "react-icons/io5";
-import {
-  HiOutlineChatBubbleLeftEllipsis,
-  HiOutlineCog8Tooth,
-} from "react-icons/hi2";
-import { BiAddToQueue } from "react-icons/bi";
-import { BsFillTrash3Fill } from "react-icons/bs";
-import { FaRegAddressCard, FaStackExchange } from "react-icons/fa";
-import { FiEdit, FiFilter } from "react-icons/fi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrDocumentVerified, GrGroup } from "react-icons/gr";
-import { HiOutlineExclamation, HiOutlineUser } from "react-icons/hi";
-import { IoIosNotificationsOutline } from "react-icons/io";
-import { MdOutlineDragHandle, MdPendingActions } from "react-icons/md";
-import { RiCloseCircleFill, RiEyeCloseLine } from "react-icons/ri";
-import { RxDashboard } from "react-icons/rx";
-import { SiAdguard } from "react-icons/si";
-import { SlLogout } from "react-icons/sl";
 import TooltipComponent from "../Tooltip/Tooltip";
 import UseIconController from "./Icons.controller";
+import { DefaultIcons } from "./Icons.imports";
 import { IconsProps } from "./Icons.types";
 
 const Icons = ({
@@ -53,7 +25,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <MdPendingActions
+          <DefaultIcons.MdPendingActions
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -67,7 +39,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <AiOutlineHome
+          <DefaultIcons.AiOutlineHome
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -81,7 +53,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <AiOutlineUser
+          <DefaultIcons.AiOutlineUser
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -95,7 +67,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <RxDashboard
+          <DefaultIcons.RxDashboard
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -109,7 +81,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <SlLogout
+          <DefaultIcons.SlLogout
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -123,7 +95,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <GiHamburgerMenu
+          <DefaultIcons.GiHamburgerMenu
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -137,7 +109,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <IoIosNotificationsOutline
+          <DefaultIcons.IoIosNotificationsOutline
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -151,7 +123,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <SiAdguard
+          <DefaultIcons.SiAdguard
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -165,7 +137,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <FiFilter
+          <DefaultIcons.FiFilter
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -179,7 +151,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <HiOutlineChatBubbleLeftEllipsis
+          <DefaultIcons.HiOutlineChatBubbleLeftEllipsis
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -193,7 +165,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <HiOutlineExclamation
+          <DefaultIcons.HiOutlineExclamation
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -207,7 +179,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <IoWarningOutline
+          <DefaultIcons.IoWarningOutline
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -221,7 +193,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <RiCloseCircleFill
+          <DefaultIcons.RiCloseCircleFill
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -235,7 +207,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <AiOutlineEyeInvisible
+          <DefaultIcons.AiOutlineEyeInvisible
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -249,7 +221,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <AiOutlineEye
+          <DefaultIcons.AiOutlineEye
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -263,7 +235,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <RiEyeCloseLine
+          <DefaultIcons.RiEyeCloseLine
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -277,7 +249,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <HiOutlineCog8Tooth
+          <DefaultIcons.HiOutlineCog8Tooth
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -291,7 +263,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <IoKeyOutline
+          <DefaultIcons.IoKeyOutline
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -305,7 +277,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <GrGroup
+          <DefaultIcons.GrGroup
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -319,7 +291,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <HiOutlineUser
+          <DefaultIcons.HiOutlineUser
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -333,7 +305,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <AiOutlineSearch
+          <DefaultIcons.AiOutlineSearch
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -347,7 +319,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <BiAddToQueue
+          <DefaultIcons.BiAddToQueue
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -361,7 +333,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <FiEdit
+          <DefaultIcons.FiEdit
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -375,7 +347,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <BsFillTrash3Fill
+          <DefaultIcons.BsFillTrash3Fill
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -389,7 +361,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <MdOutlineDragHandle
+          <DefaultIcons.MdOutlineDragHandle
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -403,7 +375,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <GrDocumentVerified
+          <DefaultIcons.GrDocumentVerified
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -417,7 +389,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <FaStackExchange
+          <DefaultIcons.FaStackExchange
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -431,7 +403,7 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <FaRegAddressCard
+          <DefaultIcons.FaRegAddressCard
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}
@@ -445,7 +417,21 @@ const Icons = ({
         title={tooltip.title}
         position={tooltip.position}
         children={
-          <IoDocumentsOutline
+          <DefaultIcons.IoDocumentsOutline
+            data-cy={`icons-${icon}`}
+            style={Actions.colorCheck()}
+            className={Actions.classNameCheck()}
+            onClick={() => action()}
+          />
+        }
+      />
+    ),
+    newsLetter: (
+      <TooltipComponent
+        title={tooltip.title}
+        position={tooltip.position}
+        children={
+          <DefaultIcons.ImNewspaper
             data-cy={`icons-${icon}`}
             style={Actions.colorCheck()}
             className={Actions.classNameCheck()}

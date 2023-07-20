@@ -1,4 +1,11 @@
 .container {
     position: relative;
-    top: -2rem;
+    top: -2.5rem;
+    left: -.2rem;
+}
+
+@media all and (max-width:768px) {
+    .container {
+        display: none;
+    }
 }

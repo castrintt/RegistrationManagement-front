@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import globals from "@styles/CommonSidebarWithComponent.module.css";
+import styles from "./MainClientContainer.module.css";
 import { Sidebar } from "@components/Sidebar/Sidebar";
 import Icons from "@components/Icons/Icons";
 import UseMainClientContainerController from "./MainClientContainer.controller";
@@ -9,7 +9,7 @@ const MainClientContainer = () => {
   const { Actions, States } = UseMainClientContainerController();
 
   return (
-    <div className={globals.container}>
+    <div className={styles.container}>
       <Sidebar.Container>
         <Sidebar.Header onClickImage={Actions.onNavigateHome}>
           {States.icons.map((values, index) => (
@@ -19,8 +19,9 @@ const MainClientContainer = () => {
           ))}
         </Sidebar.Header>
         <Sidebar.Footer />
+        <Sidebar.ResponsiveDropdown {...States.dropDownItems} />
       </Sidebar.Container>
-      <div className={globals.main_content}>{States.Render()}</div>
+      <div className={styles.main_content}>{Actions.onRender()}</div>
     </div>
   );
 };

@@ -22,7 +22,6 @@ export default defineConfig({
       "@commonPages": "/src/App/Pages/Common",
       "@routes": "/src/App/Routes",
       "@store": "/src/App/Store",
-      "@styles": "/src/App/styles",
     },
   },
 });

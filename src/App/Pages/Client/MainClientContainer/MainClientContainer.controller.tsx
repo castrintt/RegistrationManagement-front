@@ -1,17 +1,27 @@
-import Application from "@clientPages/Notifications/Notifications";
-import Documents from "@clientPages/Documents/Documents";
-import Home from "@clientPages/Home/Home";
-import User from "@clientPages/User/User";
 import { IconsProps } from "@components/Icons/Icons.types";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paths } from "@routes/DynamicPaths";
+import { useState } from "react";
+import { SidebarResponsiveDropdownProps } from "@components/Sidebar/SidebarResponsiveDropdown/SidebarResponsiveDropdown";
+import { EIconColor } from "@enums/EIconColor";
+import { EIconName } from "@enums/EIconName";
+
+type DefaultIconProps = {
+  size: string;
+  color: EIconColor;
+  position: "right" | "left" | "top" | "bottom";
+};
 
 const UseMainClientContainerController = () => {
-  const defaultSize = "2rem";
-  const defaultPosition = "right";
-  const defaultColor = "white";
+  const defaultIconsProps: DefaultIconProps = {
+    size: "2rem",
+    position: "right",
+    color: EIconColor.White,
+  };
+  const [dropDownIsOpen, setDropDownIsOpen] = useState<boolean>(false);
 
   const { pathname } = useLocation();
+
   const navigate = useNavigate();
 
   const navigateHomeClient = () => {
@@ -24,67 +34,118 @@ const UseMainClientContainerController = () => {
 
   const homeIcons: IconsProps[] = [
     {
-      icon: "home",
-      color: defaultColor,
-      size: defaultSize,
+      icon: EIconName.Home,
+      color: defaultIconsProps.color,
+      size: defaultIconsProps.size,
       action: () => navigate("/client/home"),
       isActive: verifyIfPathIncludes("/home"),
       tooltip: {
         title: "Home",
-        position: defaultPosition,
+        position: defaultIconsProps.position,
       },
     },
     {
-      icon: "user",
-      color: defaultColor,
-      size: defaultSize,
+      icon: EIconName.User,
+      color: defaultIconsProps.color,
+      size: defaultIconsProps.size,
       action: () => navigate("/client/user"),
       isActive: verifyIfPathIncludes("/user"),
       tooltip: {
         title: "Minha conta",
-        position: defaultPosition,
+        position: defaultIconsProps.position,
       },
     },
     {
-      icon: "notification",
-      color: defaultColor,
-      size: defaultSize,
+      icon: EIconName.Notification,
+      color: defaultIconsProps.color,
+      size: defaultIconsProps.size,
       action: () => navigate("/client/notifications"),
       isActive: verifyIfPathIncludes("/notifications"),
       tooltip: {
         title: "Notificações",
-        position: defaultPosition,
+        position: defaultIconsProps.position,
       },
     },
     {
-      icon: "documents",
-      color: defaultColor,
-      size: defaultSize,
+      icon: EIconName.Documents,
+      color: defaultIconsProps.color,
+      size: defaultIconsProps.size,
       action: () => navigate("/client/documents"),
       isActive: verifyIfPathIncludes("/documents"),
       tooltip: {
         title: "Documentos",
-        position: defaultPosition,
+        position: defaultIconsProps.position,
+      },
+    },
+    {
+      icon: EIconName.NewsLetter,
+      color: defaultIconsProps.color,
+      size: defaultIconsProps.size,
+      action: () => navigate("/client/news-letter"),
+      isActive: verifyIfPathIncludes("/news-letter"),
+      tooltip: {
+        title: "NewsLetter",
+        position: defaultIconsProps.position,
       },
     },
   ];
 
-  const pathnameComponentsRender = () => {
-    const pathOption = Paths.Client.filter((values) => {
+  const navigateAndCloseDropDown = (path: string) => {
+    setDropDownIsOpen(!dropDownIsOpen);
+    navigate(path);
+  };
+
+  const dropDownSection: Array<{
+    route: string;
+    action: () => void;
+  }> = [
+    {
+      route: "Home",
+      action: () => navigateAndCloseDropDown("/client/home"),
+    },
+    {
+      route: "Minha conta",
+      action: () => navigateAndCloseDropDown("/client/user"),
+    },
+    {
+      route: "Notificações",
+      action: () => navigateAndCloseDropDown("/client/notifications"),
+    },
+    {
+      route: "Documentos",
+      action: () => navigateAndCloseDropDown("/client/documents"),
+    },
+    {
+      route: "NewsLetter",
+      action: () => navigateAndCloseDropDown("/client/news-letter"),
+    },
+  ];
+
+  const pathnameComponentsRender = (): JSX.Element => {
+    const currentPath = Paths.Client.filter((values) => {
       if (verifyIfPathIncludes(values.path)) {
         return values;
       }
     })[0];
-    return pathOption.component;
+    return currentPath.component;
+  };
+
+  const dropDownProperties = (): SidebarResponsiveDropdownProps => {
+    return {
+      isOpen: dropDownIsOpen,
+      openClose: () => setDropDownIsOpen(!dropDownIsOpen),
+      items: dropDownSection,
+    };
   };
 
   return {
     Actions: {
       onNavigateHome: navigateHomeClient,
+      onRender: pathnameComponentsRender,
     },
     States: {
       icons: homeIcons,
-      Render: pathnameComponentsRender,
+      dropDownItems: dropDownProperties(),
     },
   };
 };
