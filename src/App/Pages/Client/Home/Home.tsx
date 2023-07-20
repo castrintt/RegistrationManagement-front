@@ -2,13 +2,17 @@
 import React from "react";
 import styles from "./Home.module.css";
 import UseHomeController from "./Home.controller";
-
+import { Card } from "@components/Card/Card";
 
 const Home = () => {
-  const { Actions, States } = UseHomeController();
+  const { States } = UseHomeController();
   return (
-    <div>
-      <span>Home</span>
+    <div className={styles.container}>
+      <Card.Container>
+        <Card.Section title="titulo de seção">
+          <Card.GroupItems items={States.cardTest} />
+        </Card.Section>
+      </Card.Container>
     </div>
   );
 };

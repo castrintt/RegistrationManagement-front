@@ -21,8 +21,8 @@
 
     .drop_down_items {
         position: absolute;
-        top: 133%;
-        right: 0;
+        top: 70%;
+        right: 2.1rem;
         width: 15rem;
         height: auto;
         background-color: white;
@@ -32,11 +32,14 @@
         justify-content: center;
         align-items: flex-start;
         gap: 1.5rem;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        color: var(--dark-blurred-blue);
         font-weight: 550;
         border-bottom-left-radius: .4rem;
         border-bottom-right-radius: .4rem;
+        border-top-left-radius: .4rem;
         box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.397);
+        z-index: 10;
     }
 
     .logout_item {
