@@ -1,29 +1,32 @@
+import { useState } from "react";
+
+
 const UseHomeController = () => {
-  const cardItems = [
+  const [activeStep, setActiveStep] = useState("personalData");
+
+  const verifyIfIsActive = (step: string): boolean => {
+    if (step === activeStep) {
+      return true;
+    }
+    return false;
+  };
+
+  const stepButtonProperties = [
     {
-      labelText: "Test",
-      children: <span>teste</span>,
+      action: () => setActiveStep("personalData"),
+      text: "dados pessoais",
+      active: verifyIfIsActive("personalData"),
     },
     {
-      labelText: "Test 2",
-      children: <span>teste</span>,
-    },
-    {
-      labelText: "Test 3",
-      children: <span>teste</span>,
-    },
-    {
-      labelText: "Test 4",
-      children: <span>teste</span>,
-    },
-    {
-      labelText: "Test 5",
-      children: <span>teste</span>,
+      action: () => setActiveStep("address"),
+      text: "endereço",
+      active: verifyIfIsActive("address"),
     },
   ];
+
   return {
     States: {
-      cardTest: cardItems,
+      stepProperties: stepButtonProperties,
     },
   };
 };

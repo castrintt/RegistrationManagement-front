@@ -2,17 +2,20 @@
 import React from "react";
 import styles from "./Home.module.css";
 import UseHomeController from "./Home.controller";
-import { Card } from "@components/Card/Card";
+import StepButton from "@components/StepButton/StepButton";
 
 const Home = () => {
   const { States } = UseHomeController();
+
   return (
     <div className={styles.container}>
-      <Card.Container>
-        <Card.Section title="titulo de seção">
-          <Card.GroupItems items={States.cardTest} />
-        </Card.Section>
-      </Card.Container>
+      <div className={styles.steps}>
+        {States.stepProperties.map((values, index) => (
+          <React.Fragment key={index}>
+            <StepButton {...values} />
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 };

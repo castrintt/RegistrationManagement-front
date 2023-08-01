@@ -1,0 +1,17 @@
+#default {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 550;
+    color: var(--light-blurred-blue);
+    text-transform: capitalize;
+}
+
+.active_button {
+    border-bottom: 3px solid var(--light-blurred-blue);
+    transition-duration: .2s;
+}
+
+.deactive_button {
+    transition-duration: .7s;
+    color: rgba(128, 128, 128, 0.582) !important;
+}
