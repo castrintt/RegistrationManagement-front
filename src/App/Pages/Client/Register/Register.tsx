@@ -14,6 +14,7 @@ const Register = () => {
     Actions.onLoading();
   }, [States.loading]);
 
+
   return (
     <React.Fragment>
       <Modal.Container isOpen={States.termsModal}>

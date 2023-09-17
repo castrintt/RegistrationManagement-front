@@ -37,6 +37,8 @@
       "@commonPages/*": ["src/App/Pages/Common/*"],
       "@routes/*": ["src/App/Routes/*"],
       "@store/*": ["src/App/Store/*"],
+      "vitest": ["./node_modules/vitest/dist/index.d.ts"],
+      "vitest/*": ["./node_modules/vitest/dist/*"]
     }
   },
   "include": [

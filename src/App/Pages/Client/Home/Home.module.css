@@ -1,11 +1,193 @@
 .container {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    overflow: auto;
 }
 
-.steps {
+.presentation_container {
+    max-width: 90%;
+    width: 100%;
+    margin: 1rem auto 0 auto;
+    height: 10rem;
+    border-radius: .4rem;
+    box-shadow: var(--box-shadow);
+}
+
+.presentation_container>img {
+    border-radius: .4rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.solicitation_container {
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_section {
+    max-width: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.title_section>h1 {
+    font-size: 1.3rem;
+}
+
+.title_section>button {
+    font-size: 1.3rem;
+}
+
+.table_status_resume {
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card:first-of-type {
+    margin-top: 1rem;
+}
+
+.card {
+    height: 7rem;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+}
+
+.card>span {
+    font-size: 1.3rem;
+    font-weight: 550;
+}
+
+.card_pending {
+    border-top: .5rem solid var(--attention);
+}
+
+.card_pending>span {
+    color: var(--attention);
+}
+
+
+.card_waiting {
+    border-top: .5rem solid var(--on-service);
+}
+
+.card_waiting>span {
+    color: var(--on-service);
+}
+
+.card_rejected {
+    border-top: .5rem solid var(--danger);
+}
+
+.card_rejected>span {
+    color: var(--danger);
+}
+
+.card_canceled {
+    border-top: .5rem solid black;
+}
+
+.card_canceled>span {
+    color: black;
+}
+
+.card_approved {
+    border-top: .5rem solid var(--active);
+}
+
+.card_approved>span {
+    color: var(--active);
+}
+
+.responsive_table_container {
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-block: 2rem;
+    padding-block: 2rem;
+    border-radius: .4rem;
+}
+
+.table {
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.514);
+}
+
+.table>label {
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1rem;
+}
+
+.table>label:not(:last-of-type) {
+    border-bottom: 1px solid grey;
+}
+
+.table>label>span:first-of-type {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+} 
+
+.table_container {
+    display: none;
+}
+
+
+
+@media all and (min-width:768px) {
+    .table_container {
+        display: block;
+    }
+
+    .responsive_table_container {
+        display: none;
+    }
+
 }

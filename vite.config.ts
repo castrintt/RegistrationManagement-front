@@ -1,8 +1,12 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  test: {
+    environment: "happy-dom",
+  },
   resolve: {
     alias: {
       "@clientService": "/business/service/client",
@@ -22,6 +26,7 @@ export default defineConfig({
       "@commonPages": "/src/App/Pages/Common",
       "@routes": "/src/App/Routes",
       "@store": "/src/App/Store",
+      "vitest/*": "/node_modules/vitest/dist",
     },
   },
 });

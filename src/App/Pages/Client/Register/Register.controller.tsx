@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppSelector } from "@store/Store";
@@ -23,6 +21,7 @@ const UseRegisterController = () => {
   const [termsModal, setTermsModal] = useState<boolean>(false);
   const [policiesModal, setPoliciesModal] = useState<boolean>(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const loading = {
     terms: useAppSelector((state) => state.terms.loading),
     policies: useAppSelector((state) => state.policies.loading),
@@ -39,11 +38,11 @@ const UseRegisterController = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isLoading = (): boolean => {
+  const isLoading = useCallback((): boolean => {
     return Object.values(loading).some((value) => value);
-  };
+  }, [loading]);
 
-  const userConstructor = (data: FormValues) => {
+  const userConstructor = useCallback((data: FormValues) => {
     return {
       login: data.email,
       userPassword: {
@@ -54,7 +53,7 @@ const UseRegisterController = () => {
       acceptTermsAndPolicies: data.terms,
       registrationDate: new Date(),
     };
-  };
+  }, []);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     if (data.confirmPassword !== data.password) {
@@ -70,28 +69,28 @@ const UseRegisterController = () => {
     }
   };
 
-  const openPoliciesModal = () => {
+  const openPoliciesModal = useCallback(() => {
     if (!modalTexts.policies.policyDescription)
       dispatch(fetchPolicies() as any);
     setPoliciesModal(true);
-  };
+  }, [dispatch, modalTexts.policies.policyDescription]);
 
-  const closePoliciesModal = () => {
+  const closePoliciesModal = useCallback(() => {
     setPoliciesModal(false);
-  };
+  }, [setPoliciesModal]);
 
-  const openTermsModal = () => {
+  const openTermsModal = useCallback(() => {
     if (!modalTexts.terms.termsDescription) dispatch(fetchTerms() as any);
     setTermsModal(true);
-  };
+  }, [modalTexts.terms.termsDescription, setTermsModal, dispatch]);
 
-  const closeTermsModal = () => {
+  const closeTermsModal = useCallback(() => {
     setTermsModal(false);
-  };
+  }, []);
 
-  const dispatchLoadingAction = () => {
+  const dispatchLoadingAction = useCallback(() => {
     dispatch(loadingState(isLoading() ? "initialize" : "cancel"));
-  };
+  },[dispatch, isLoading]);
 
   return {
     Actions: {

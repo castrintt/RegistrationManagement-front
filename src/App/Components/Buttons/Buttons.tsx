@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Buttons.module.css";
 
 export type Props = {
-  onClickMethod: Function;
+  onClickMethod: () => void;
   buttonText: string;
   variant: "edit" | "delete" | "create" | "createFull";
   type?: "submit" | "button";
